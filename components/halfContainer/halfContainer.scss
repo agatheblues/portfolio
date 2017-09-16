@@ -1,0 +1,30 @@
+p {
+       color: blue;
+   }
+
+.half-wrapper {
+  width: 50%;
+  height: 100%;
+}
+
+.half-wrapper--right {
+  float: right;
+  background-color: green;
+}
+
+.half-wrapper--left {
+  float: left;
+  background-color: yellow;
+}
+
+.halfContainer__title {
+  display: block;
+  text-align: center;
+  transform: translateY(-50%);
+  top: 50%;
+  position: relative;
+}
+
+.half-wrapper--selected {
+  position: fixed;
+}
