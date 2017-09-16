@@ -1,3 +1,7 @@
+$gutter: 1rem;
+
 .header-container {
   background-color: #ffffff;
+  margin-top: 2*$gutter;
+  margin-bottom: $gutter;
 }

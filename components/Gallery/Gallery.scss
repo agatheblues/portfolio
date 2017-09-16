@@ -1,10 +1,21 @@
 $black: #111;
 $transition: all .25s ease-in-out;
+$gutter: 1rem;
 
 .gallery-container {
- padding-top: .9375rem;
  text-align: center;
  background-color: #ffffff;
+ margin-top: $gutter;
+ margin-bottom: $gutter;
+ display: inline-block;
+}
+
+.gallery-wrapper {
+  display: inline-block;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .gallery-card {
@@ -16,6 +27,17 @@ $transition: all .25s ease-in-out;
 .gallery-thumbnail {
   max-width: 100%;
   height: auto;
+}
+
+.gallery-title {
+  margin: $gutter 0 $gutter 0;
+  text-align: left;
+}
+
+.gallery-description {
+  font-size: 14px;
+  margin-bottom: $gutter;
+  text-align: left;
 }
 
 .card-icon-open {

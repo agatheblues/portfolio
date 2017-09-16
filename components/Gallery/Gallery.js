@@ -25,12 +25,21 @@ const Gallery = createReactClass({
     };
   },
   propTypes: {
-    imgUrls: PropTypes.array.isRequired
+    imgUrls: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string
   },
   render() {
     return(
       <section className='gallery-container'>
-        <div className='container-fluid'>
+        <div className='gallery-wrapper'>
+          <div className='gallery-title'>
+            <h2>{this.props.title}</h2>
+          </div>
+          <div className='gallery-description'>
+            <p>{this.props.description}</p>
+          </div>
+          <hr></hr>
           <div className='row'>
             {
               this.props.imgUrls.map((url, index) => {

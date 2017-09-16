@@ -7,6 +7,7 @@ $break-m: 1024px;
 $break-l: 1366px;
 $break-xl: 1920px;
 
+$gutter: 1rem;
 
 html,
 body {
@@ -32,18 +33,35 @@ body {
     width: 100%;
   }
   @media screen and (min-width: $break-s) {
-    width: 90%;
+    width: 80%;
   }
   @media screen and (min-width: $break-m) {
-    width: 85%;
+    width: 75%;
   }
   @media screen and (min-width: $break-l) {
-    width: 80%;
+    width: 70%;
   }
 }
 
 h1 {
   text-align: center;
-  padding: 10px 0 10px 0;
+  padding: $gutter 0 $gutter 0;
   border-bottom: solid #9b8f78;
+}
+
+h2 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 25px;
+}
+
+p {
+  margin: 0;
+}
+
+hr {
+  border-top: #9b8f78 solid 1px;
+  width: 50px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
