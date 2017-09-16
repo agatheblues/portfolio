@@ -4,13 +4,8 @@ import {Gallery} from './components/Gallery/Gallery.js';
 require('./main.scss');
 
 ReactDOM.render(
-  <div>
-    <Gallery/>
-    {// <HalfContainer isRight={false} title={'About'}/>
-    // <HalfContainer isRight={true} title={'Portfolio'}/>
-    }
-  </div>,
-  document.getElementById('app')
+  <Gallery imgUrls={imgUrlsList} />,
+  galleryContainer
 );
 
 // var FriendsContainer = React.createClass({
