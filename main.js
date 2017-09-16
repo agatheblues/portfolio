@@ -4,9 +4,6 @@ import {Gallery} from './components/Gallery/Gallery.js';
 import {Header} from './components/Header/Header.js';
 require('./main.scss');
 
-// Cache gallery container
-const galleryContainer = document.querySelector('.gallery-container');
-
 // Create new array with URLs for images
 let imgUrlsList = [
   './data/images/IMG_4666.JPG',
@@ -25,10 +22,11 @@ let imgUrlsList = [
 
 ];
 
+
 ReactDOM.render(
-  <div className='container'>
-    <Header/>
+  <div>
+    <Header title={'My title'}/>
     <Gallery imgUrls={imgUrlsList} />
   </div>,
-  galleryContainer
+  document.querySelector('.container')
 );

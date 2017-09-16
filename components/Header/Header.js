@@ -10,10 +10,13 @@ const Header = createReactClass({
     };
   },
   propTypes: {
+    title: PropTypes.string.isRequired
   },
   render() {
     return(
-      <h1>My title</h1>
+      <header className="header-container">
+        <h1>{this.props.title}</h1>
+      </header>
     );
   }
 });

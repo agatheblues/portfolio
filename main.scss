@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Lora:400');
+
+// Breakpoints
 $break-xs: 320px;
 $break-s: 768px;
 $break-m: 1024px;
 $break-l: 1366px;
 $break-xl: 1920px;
+
 
 html,
 body {
@@ -17,6 +21,10 @@ html {
 body {
  position: relative;
  font-size: 100%;
+ font-family: 'Lora';
+ font-weight: 400;
+ background-color: #f1f4f6;
+ color: #1e2b31;
 }
 
 .container {
@@ -32,4 +40,10 @@ body {
   @media screen and (min-width: $break-l) {
     width: 80%;
   }
+}
+
+h1 {
+  text-align: center;
+  padding: 10px 0 10px 0;
+  border-bottom: solid #9b8f78;
 }

@@ -29,19 +29,21 @@ const Gallery = createReactClass({
   },
   render() {
     return(
-      <div className='container-fluid gallery-container'>
-        <div className='row'>
-          {
-            this.props.imgUrls.map((url, index) => {
-              return <div className='col-sm-12 col-md-12 col-xl-12' key={index}>
-                <div className='gallery-card'>
-                  <GalleryImage className='gallery-thumbnail' src={url} alt={'Image number ' + (index + 1)}/>
-                </div>
-              </div>;
-            })
-          }
+      <section className='gallery-container'>
+        <div className='container-fluid'>
+          <div className='row'>
+            {
+              this.props.imgUrls.map((url, index) => {
+                return <div className='col-sm-12 col-md-12 col-xl-12' key={index}>
+                  <div className='gallery-card'>
+                    <GalleryImage className='gallery-thumbnail' src={url} alt={'Image number ' + (index + 1)}/>
+                  </div>
+                </div>;
+              })
+            }
+          </div>
         </div>
-      </div>
+      </section>
     );
   }
 });
