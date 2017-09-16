@@ -8,8 +8,9 @@ const galleryContainer = document.querySelector('.gallery-container');
 
 // Create new array with URLs for images
 let imgUrlsList = [
-  'https://source.unsplash.com/3Z70SDuYs5g/800x600',
-  'https://source.unsplash.com/01vFmYAOqQ0/800x600',
+  './data/images/IMG_4666.JPG',
+  './data/images/IMG_4667.JPG',
+  './data/images/IMG_4686.JPG',
   'https://source.unsplash.com/2Bjq3A7rGn4/800x600',
   'https://source.unsplash.com/t20pc32VbrU/800x600',
   'https://source.unsplash.com/pHANr-CpbYM/800x600',
