@@ -1,3 +1,9 @@
+$break-xs: 320px;
+$break-s: 768px;
+$break-m: 1024px;
+$break-l: 1366px;
+$break-xl: 1920px;
+
 html,
 body {
  min-height: 100%;
@@ -13,6 +19,17 @@ body {
  font-size: 100%;
 }
 
-.gallery-container {
- padding-top: .9375rem;
+.container {
+  @media screen and (min-width: $break-xs) {
+    width: 100%;
+  }
+  @media screen and (min-width: $break-s) {
+    width: 90%;
+  }
+  @media screen and (min-width: $break-m) {
+    width: 85%;
+  }
+  @media screen and (min-width: $break-l) {
+    width: 80%;
+  }
 }

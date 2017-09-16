@@ -46,21 +46,4 @@ const Gallery = createReactClass({
   }
 });
 
-//  // Function for opening modal dialog
-//  openModal(url, e) {
-//   this.setState({
-//    showModal: true,
-//    url: url
-//   })
-//  };
-//
-//  // Function for closing modal dialog
-//  closeModal() {
-//   this.setState({
-//     showModal: false,
-//     url: ''
-//   })
-//  }
-// }
-
 export {Gallery};
