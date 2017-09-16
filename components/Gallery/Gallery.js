@@ -39,7 +39,7 @@ const Gallery = createReactClass({
           <div className='gallery-description'>
             <p>{this.props.description}</p>
           </div>
-          <hr></hr>
+          <hr className='hline-seperator'></hr>
           <div className='row'>
             {
               this.props.imgUrls.map((url, index) => {
