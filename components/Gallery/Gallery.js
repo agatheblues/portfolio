@@ -1,6 +1,6 @@
 require('../Gallery/Gallery.scss');
 import PropTypes from 'prop-types';
-var React = require('react');
+import React from 'react';
 var createReactClass = require('create-react-class');
 
 // Component for gallery image
@@ -43,7 +43,7 @@ const Gallery = createReactClass({
           <div className='row'>
             {
               this.props.imgUrls.map((url, index) => {
-                return <div className='col-sm-12 col-md-12 col-xl-12' key={index}>
+                return <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12' key={index}>
                   <div className='gallery-card'>
                     <GalleryImage className='gallery-thumbnail' src={url} alt={'Image number ' + (index + 1)}/>
                   </div>

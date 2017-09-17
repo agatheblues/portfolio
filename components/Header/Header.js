@@ -1,6 +1,6 @@
 require('../Header/Header.scss');
 import PropTypes from 'prop-types';
-var React = require('react');
+import React from 'react';
 var createReactClass = require('create-react-class');
 
 

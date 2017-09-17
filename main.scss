@@ -7,7 +7,12 @@ $break-m: 1024px;
 $break-l: 1366px;
 $break-xl: 1920px;
 
+// Spacing
 $gutter: 1rem;
+
+// Colors
+$navy-blue: #1e2b31;
+$gold-highlight: #9b8f78;
 
 html,
 body {
@@ -25,7 +30,7 @@ body {
  font-family: 'Lora';
  font-weight: 400;
  background-color: #f1f4f6;
- color: #1e2b31;
+ color: $navy-blue;
 }
 
 .container {
@@ -46,13 +51,21 @@ body {
 h1 {
   text-align: center;
   padding: $gutter 0 $gutter 0;
-  border-bottom: #9b8f78 solid 2px;
+  border-bottom: $gold-highlight solid 2px;
 }
 
 h2 {
   margin: 0;
   text-transform: uppercase;
   font-size: 25px;
+}
+
+h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: left;
+  margin: 0;
+  padding: $gutter 0 $gutter 0;
 }
 
 p {
@@ -63,19 +76,34 @@ hr {
   margin: 0;
 }
 
+a {
+  color: $navy-blue;
+  padding-bottom: $gutter / 4;
+  padding-top: $gutter / 4;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $navy-blue;
+  border-bottom: solid 1px $gold-highlight;
+  border-top: solid 1px $gold-highlight;
+  text-decoration: none;
+}
+
+.hyphen {
+  padding-left: $gutter / 2;
+  padding-right: $gutter / 2;
+}
+
 .hline-seperator {
-  border-top: #9b8f78 solid 1px;
+  border-top: $gold-highlight solid 1px;
   width: 50px;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-.hline-bottom {
-  border-bottom: #9b8f78 solid 2px;
-  width: 100%;
-}
-
 .hline-top {
-  border-top: #9b8f78 solid 2px;
+  border-top: $gold-highlight solid 2px;
   width: 100%;
+  margin-bottom: $gutter;
 }

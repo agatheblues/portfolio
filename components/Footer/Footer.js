@@ -1,8 +1,7 @@
 require('../Footer/Footer.scss');
 import PropTypes from 'prop-types';
-var React = require('react');
+import React from 'react';
 var createReactClass = require('create-react-class');
-
 
 const Footer = createReactClass({
   getInitialState: function() {
@@ -13,9 +12,9 @@ const Footer = createReactClass({
   },
   render() {
     return(
-      <div className="footer-container">
+      <div className='footer-container'>
         <hr className='hline-top'></hr>
-        <p>Coucou</p>
+        <p className='copyright'>Tous droits réservés &#169; 2016-2017 Agathe Lenclen</p>
       </div>
     );
   }

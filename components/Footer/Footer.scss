@@ -4,4 +4,17 @@ $gutter: 1rem;
   background-color: #ffffff;
   margin-bottom: 2*$gutter;
   margin-top: $gutter;
+  padding-bottom: $gutter;
+}
+
+.footer-container p {
+  font-size: 12px;
+}
+
+.footer-block {
+  margin: 0 $gutter 0 $gutter;
+}
+
+.copyright {
+  text-align: center;
 }
