@@ -1,6 +1,5 @@
 import React from 'react';
 import {Gallery} from '../components/Gallery/Gallery.js';
-import {GalleryTitle} from '../components/GalleryTitle/GalleryTitle.js';
 import {Header} from '../components/Header/Header.js';
 import {Footer} from '../components/Footer/Footer.js';
 var createReactClass = require('create-react-class');
@@ -17,7 +16,9 @@ const GalleryPage = createReactClass({
   render() {
     return(
       <div>
-        <GalleryTitle title={'My title'}/>
+        <div className="gallery-title-container">
+          <h1>Gallery</h1>
+        </div>
         <Gallery imgUrls={imgUrlsList}
           title={'My title 2'}
           description={

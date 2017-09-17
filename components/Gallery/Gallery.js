@@ -3,21 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 var createReactClass = require('create-react-class');
 
-// Component for gallery image
-const GalleryImage = createReactClass({
-  propTypes: {
-    className: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired
-  },
-  render() {
-    return(
-      <img className={this.props.className} src={this.props.src} alt={this.props.alt} />
-    );
-  }
-});
-
-// Component for gallery
 const Gallery = createReactClass({
   getInitialState: function() {
     return {
@@ -45,7 +30,7 @@ const Gallery = createReactClass({
               this.props.imgUrls.map((url, index) => {
                 return <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12' key={index}>
                   <div className='gallery-card'>
-                    <GalleryImage className='gallery-thumbnail' src={url} alt={'Image number ' + (index + 1)}/>
+                    <img className='gallery-thumbnail' src={url} alt={'Image number ' + (index + 1)}/>
                   </div>
                 </div>;
               })

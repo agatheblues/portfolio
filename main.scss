@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Assistant:400');
 
 // Breakpoints
-$break-xs: 320px;
+$break-xxs: 320px;
+$break-xs: 480px;
 $break-s: 768px;
 $break-m: 1024px;
 $break-l: 1366px;
@@ -35,8 +36,10 @@ body {
 }
 
 .container {
+  width: 100%;
+  
   @media screen and (min-width: $break-xs) {
-    width: 100%;
+    width: 90%;
   }
   @media screen and (min-width: $break-s) {
     width: 80%;

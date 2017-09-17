@@ -1,0 +1,35 @@
+$gutter: 1rem;
+$transition: all 3s ease-in-out;
+
+.card-wrapper {
+  display: inline-block;
+  padding-left: $gutter / 2;
+  padding-right: $gutter / 2;
+  padding-top: $gutter / 2;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: $gutter;
+  margin-top: $gutter;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: $gutter;
+}
+
+.card-thumbnail {
+  max-width: 100%;
+  height: auto;
+}
+
+.card-title {
+  margin-top: $gutter;
+  margin-bottom: $gutter;
+}
+
+.card-description {
+
+}
