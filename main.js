@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Gallery} from './components/Gallery/Gallery.js';
+import {GalleryTitle} from './components/GalleryTitle/GalleryTitle.js';
 import {Header} from './components/Header/Header.js';
 import {Footer} from './components/Footer/Footer.js';
 require('./main.scss');
@@ -15,7 +16,7 @@ let imgUrlsList = [
 
 ReactDOM.render(
   <div>
-    <Header title={'My title'}/>
+    <GalleryTitle title={'My title'}/>
     <Gallery imgUrls={imgUrlsList}
       title={'My title 2'}
       description={
