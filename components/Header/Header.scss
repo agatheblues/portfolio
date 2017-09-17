@@ -1,7 +1,25 @@
 $gutter: 1rem;
 
+// Colors
+$navy-blue: #1e2b31;
+$gold-highlight: #9b8f78;
+
 .header-container {
-  background-color: #ffffff;
   margin-top: 2*$gutter;
   margin-bottom: $gutter;
+}
+
+.header-items {
+  display: inline;
+  margin-right: $gutter;
+}
+
+.header-items {
+  padding: $gutter / 4;
+}
+
+.header-items.active {
+  color: $navy-blue;
+  border-bottom: solid 1px $gold-highlight;
+  text-decoration: none;
 }
