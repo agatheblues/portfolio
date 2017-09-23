@@ -47,7 +47,7 @@ const Card = createReactClass({
           {
             this.props.cardItems.map((item, index) => {
               if (!item.linkTo | !item.id) {return;}
-              return <div className='col-xs-12 col-sm-6 col-md-4 col-lg-4'
+              return <div className='col-xs-12 col-sm-6 col-md-4 col-lg-4 row-item'
                 key={index}
                 onClick={this.handleClick}
                 id={item.id}>

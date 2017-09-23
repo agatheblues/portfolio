@@ -27,6 +27,26 @@ const cardItems = [
     imgUrl: './data/images/IMG_4666.JPG',
     id: 'gallery-4',
     linkTo: '/photography/gallery'
+  },
+  {
+    title: 'Card 5',
+    imgUrl: './data/images/IMG_4666.JPG',
+    id: 'gallery-5',
+    linkTo: '/photography/gallery',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
+  },
+  {
+    title: 'Card 6',
+    imgUrl: './data/images/IMG_4666.JPG',
+    id: 'gallery-6',
+    linkTo: '/photography/gallery'
+  },
+  {
+    title: 'Card 7',
+    imgUrl: './data/images/IMG_4666.JPG',
+    id: 'gallery-4',
+    linkTo: '/photography/gallery',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
   }
 ];
 
