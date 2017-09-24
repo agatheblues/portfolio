@@ -7,6 +7,7 @@ import {AboutPage} from './pages/AboutPage.js';
 import {HomePage} from './pages/HomePage.js';
 import {PhotographyPage} from './pages/PhotographyPage.js';
 import {Header} from './components/Header/Header.js';
+import axios from 'axios';
 
 var createReactClass = require('create-react-class');
 
@@ -15,52 +16,30 @@ const menuItems = [
   {name: 'About', link: '/about', exact: false},
   {name: 'Photography', link: '/photography', exact: false}];
 
-const cardItems = [
-  {
-    title: 'Card 1',
-    imgUrl: './data/images/IMG_4666.JPG',
-    id: 'gallery-1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
-  },
-  {
-    title: 'Card 2',
-    imgUrl: './data/images/IMG_4666.JPG',
-    id: 'gallery-2',
-  },
-  {
-    title: 'Card 3',
-    imgUrl: './data/images/IMG_4666.JPG',
-    id: 'gallery-3',
-  },
-  {
-    title: 'Card 4',
-    imgUrl: './data/images/IMG_4666.JPG',
-    id: 'gallery-4',
-  },
-  {
-    title: 'Card 5',
-    imgUrl: './data/images/IMG_4666.JPG',
-    id: 'gallery-5',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
-  },
-  {
-    title: 'Card 6',
-    imgUrl: './data/images/IMG_4666.JPG',
-    id: 'gallery-6',
-  },
-  {
-    title: 'Card 7',
-    imgUrl: './data/images/IMG_4666.JPG',
-    id: 'gallery-7',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
-  }
-];
 
 const MainWrapper = createReactClass({
   getInitialState: function() {
     return {
-      selectedGallery: 'coucou'
+      galleries: []
     };
+  },
+  componentDidMount: function() {
+    var _this = this;
+    this.serverRequest =
+      axios
+        .get('./static/galleries.json')
+        .then(function(result) {
+          _this.setState({
+            galleries: result.data.galleries
+          });
+        })
+        .catch((error) => {
+          const response = error.response;
+          console.log(response.data.errors);
+        });
+  },
+  componentWillUnmount: function() {
+    this.serverRequest.abort();
   },
   render() {
     return(
@@ -70,10 +49,10 @@ const MainWrapper = createReactClass({
           <Route exact path="/" component={HomePage}/>
           <Route exact path="/about" component={AboutPage}/>
           <Route exact path="/photography" render={(props) => (
-            <PhotographyPage {...props} cardItems={cardItems} />
+            <PhotographyPage {...props} cardItems={this.state.galleries} />
           )}/>
           {
-            cardItems.map((item, index) => {
+            this.state.galleries.map((item, index) => {
               if (!item.id) {return;}
               const galleryPath = '/photography/' + item.id;
               return <Route exact

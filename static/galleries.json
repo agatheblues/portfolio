@@ -1,0 +1,42 @@
+{ "galleries":
+  [
+    {
+      "title": "Card 1",
+      "imgUrl": "./static/images/IMG_4666.JPG",
+      "id": "gallery-1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt"
+    },
+    {
+      "title": "Card 2",
+      "imgUrl": "./static/images/IMG_4666.JPG",
+      "id": "gallery-2"
+    },
+    {
+      "title": "Card 3",
+      "imgUrl": "./static/images/IMG_4666.JPG",
+      "id": "gallery-3"
+    },
+    {
+      "title": "Card 4",
+      "imgUrl": "./static/images/IMG_4666.JPG",
+      "id": "gallery-4"
+    },
+    {
+      "title": "Card 5",
+      "imgUrl": "./static/images/IMG_4666.JPG",
+      "id": "gallery-5",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt"
+    },
+    {
+      "title": "Card 6",
+      "imgUrl": "./static/images/IMG_4666.JPG",
+      "id": "gallery-6"
+    },
+    {
+      "title": "Card 7",
+      "imgUrl": "./static/images/IMG_4666.JPG",
+      "id": "gallery-7",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt"
+    }
+  ]
+}

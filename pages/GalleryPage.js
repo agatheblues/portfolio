@@ -7,9 +7,9 @@ var createReactClass = require('create-react-class');
 
 // Create new array with URLs for images
 let imgUrlsList = [
-  './data/images/IMG_4666.JPG',
-  './data/images/IMG_4667.JPG',
-  './data/images/IMG_4686.JPG'
+  './static/images/IMG_4666.JPG',
+  './static/images/IMG_4667.JPG',
+  './static/images/IMG_4686.JPG'
 
 ];
 
@@ -22,7 +22,7 @@ const GalleryPage = createReactClass({
     return(
       <div>
         <div className="gallery-title-container">
-          <h1>Gallery</h1>
+          <h1>{this.props.cardItem.title}</h1>
         </div>
         <Gallery imgUrls={imgUrlsList}
           title={'My title 2'}
