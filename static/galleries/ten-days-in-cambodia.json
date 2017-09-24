@@ -1,0 +1,86 @@
+{
+  "galleryContent": [
+    {
+      "title": "Siem Reap & Angkor temples",
+      "description": "Our journey starts with the temples of Angkor, near Siem Reap. We wake up in the middle of the night, get in our tuk-tuk with our local driver. We should get there early to catch the sun rising on Angkor Wat. I remember having trouble shooting a picture that does not capture a handful of tourists. We spend the day, under the heat, visiting the temples one after the other. After the lunch, and still a couple of temples to see, we're heading home. The jet-lag, the sudden unbearable 15°C of difference in temperature, and us waking up at dawn defeated us. On the way home, a thundershower cool us down for a moment.",
+      "imgUrlsList": [
+        "./static/images/cambodia/gallery-1/001-1.jpg",
+        "./static/images/cambodia/gallery-1/001-3.jpg",
+        "./static/images/cambodia/gallery-1/001-4.jpg",
+        "./static/images/cambodia/gallery-1/001-5.jpg",
+        "./static/images/cambodia/gallery-1/001-6.jpg",
+        "./static/images/cambodia/gallery-1/001-7.jpg",
+        "./static/images/cambodia/gallery-1/001-8.jpg",
+        "./static/images/cambodia/gallery-1/001-9.jpg",
+        "./static/images/cambodia/gallery-1/001-12.jpg",
+        "./static/images/cambodia/gallery-1/001-14.jpg",
+        "./static/images/cambodia/gallery-1/001-10.jpg"
+      ]
+    },
+    {
+      "title": "A cooking class",
+      "description": "Our second day in Siem Reap is much more relaxed. Our host recommended a cooking class. I believe that cooking traditions can give you a fair glimpse of a culture, and I am not disappointed. We are lucky enough to be just the two of us in the class, and the cook is all sweetness with us.",
+      "imgUrlsList": [
+        "./static/images/cambodia/gallery-2/IMG_3346.jpg",
+        "./static/images/cambodia/gallery-2/IMG_3359.jpg"
+      ]
+    },
+    {
+      "title": "Phnom Penh (at night)",
+      "description": "We loose the charm of Siem Reap to immerse ourselves in Cambodia's capital: Phnom Penh. The city is overwhelming. The air pollution, the chaos of the traffic, the apparent mess in the streets. I realise the strictness and uniformity of our cities, back in Europe. I get fascinated by the lights at night in the city, and try to capture them.",
+      "imgUrlsList": [
+        "./static/images/cambodia/gallery-3/4_003.jpg",
+        "./static/images/cambodia/gallery-3/4_004.jpg",
+        "./static/images/cambodia/gallery-3/4_006.jpg",
+        "./static/images/cambodia/gallery-3/4-001.jpg",
+        "./static/images/cambodia/gallery-3/4-002.jpg",
+        "./static/images/cambodia/gallery-3/4-005.jpg",
+        "./static/images/cambodia/gallery-3/IMG_3457.jpg"
+      ]
+    },
+    {
+      "title": "On the road, Kampot",
+      "description": "We leave Phnom Penh to reach the South, closer to the sea. We stop at Kampot, where we meet a French couple who happen to know how to drive a motorbike. A godsend for us, as it gave us the freedom to explore the countryside, and an outstanding day for me, as it offered me exactly what I am looking for when traveling: the observation of an untouched and authentic piece of Cambodian's life.",
+      "imgUrlsList": [
+        "./static/images/cambodia/gallery-4/005-1.jpg",
+        "./static/images/cambodia/gallery-4/005-2.jpg",
+        "./static/images/cambodia/gallery-4/005-3.jpg",
+        "./static/images/cambodia/gallery-4/005-4.jpg",
+        "./static/images/cambodia/gallery-4/005-5.jpg",
+        "./static/images/cambodia/gallery-4/005-6.jpg",
+        "./static/images/cambodia/gallery-4/005-7.jpg",
+        "./static/images/cambodia/gallery-4/005-8.jpg",
+        "./static/images/cambodia/gallery-4/005-9.jpg",
+        "./static/images/cambodia/gallery-4/005-10.jpg",
+        "./static/images/cambodia/gallery-4/005-11.jpg",
+        "./static/images/cambodia/gallery-4/005-12.jpg",
+        "./static/images/cambodia/gallery-4/005-13.jpg",
+        "./static/images/cambodia/gallery-4/005-14.jpg"
+      ]
+    },
+    {
+      "title": "The shorelines of Kep",
+      "description": "Kep is our first get-together with the Indian ocean. We head towards Koh Thonsáy, or the Rabbit Island. There is a lot of wind that day. We laugh nervously during the crossing by boat, trying not to consider what are our chances to die on that boat.",
+      "imgUrlsList": [
+        "./static/images/cambodia/gallery-5/6-006.jpg",
+        "./static/images/cambodia/gallery-5/6_001.jpg",
+        "./static/images/cambodia/gallery-5/6_002.jpg",
+        "./static/images/cambodia/gallery-5/6-003.jpg",
+        "./static/images/cambodia/gallery-5/6_004.jpg",
+        "./static/images/cambodia/gallery-5/6-007.jpg"
+      ]
+    },
+    {
+      "title": "Koh Rong Island",
+      "description": "We become acquainted with deadly boat crossing, and reach Koh Rong Island, the heavenly. My final stop before getting back to Phnom Penh and then fly back to Europe. At the last minute, we switch our reservation to another one, more isolated, in cute huts on the shore. The beach is covered by mollusc holes. We bath at midnight and eat a lot of pancakes. Sweet last days, for me, and for the first time in a while, I feel fulfilled.",
+      "imgUrlsList": [
+        "./static/images/cambodia/gallery-6/007-1.jpg",
+        "./static/images/cambodia/gallery-6/007-2.jpg",
+        "./static/images/cambodia/gallery-6/008-1.jpg",
+        "./static/images/cambodia/gallery-6/008-2.jpg",
+        "./static/images/cambodia/gallery-6/008-3.jpg",
+        "./static/images/cambodia/gallery-6/008-4.jpg"
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 .gallery-container {
  text-align: center;
- background-color: #ffffff;
+ // background-color: $white;
  margin-top: $gutter;
  margin-bottom: $gutter;
  display: inline-block;
@@ -35,7 +35,7 @@
 .gallery-card {
   position: relative;
   overflow: hidden;
-  margin-bottom: $gutter;
+  margin-bottom: 2*$gutter;
 }
 
 .gallery-thumbnail {
@@ -46,6 +46,7 @@
 .gallery-title {
   margin: $gutter 0 $gutter 0;
   text-align: left;
+  color: $gold-highlight;
 }
 
 .gallery-description {
@@ -65,16 +66,4 @@
   opacity: 0;
   transform: translate(-50%, -50%);
   transition: $transition;
-
-  &:focus,
-  &:hover {
-    color: $black;
-  }
-}
-
-.gallery-thumbnail:focus ~ .card-icon-open,
-.gallery-thumbnail:hover ~ .card-icon-open,
-.gallery-thumbnail ~ .card-icon-open:focus,
-.gallery-thumbnail ~ .card-icon-open:hover {
-  opacity: 1;
 }

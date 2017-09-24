@@ -1,44 +1,12 @@
 { "galleries":
   [
     {
-      "title": "Card 1",
-      "imgUrl": "./static/images/IMG_4666.JPG",
-      "id": "gallery-1",
+      "title": "Ten Days in Cambodia",
+      "imgUrl": "./static/images/cambodia/gallery-4/005-14.jpg",
+      "id": "ten-days-in-cambodia",
       "location": "Cambodia",
       "year": "2016",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt"
-    },
-    {
-      "title": "Card 2",
-      "imgUrl": "./static/images/IMG_4666.JPG",
-      "id": "gallery-2"
-    },
-    {
-      "title": "Card 3",
-      "imgUrl": "./static/images/IMG_4666.JPG",
-      "id": "gallery-3"
-    },
-    {
-      "title": "Card 4",
-      "imgUrl": "./static/images/IMG_4666.JPG",
-      "id": "gallery-4"
-    },
-    {
-      "title": "Card 5",
-      "imgUrl": "./static/images/IMG_4666.JPG",
-      "id": "gallery-5",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt"
-    },
-    {
-      "title": "Card 6",
-      "imgUrl": "./static/images/IMG_4666.JPG",
-      "id": "gallery-6"
-    },
-    {
-      "title": "Card 7",
-      "imgUrl": "./static/images/IMG_4666.JPG",
-      "id": "gallery-7",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt"
+      "description": "Photos and notes from my trip in Cambodia, sharing the first ten days of my friend's road trip in Asia."
     }
   ]
 }

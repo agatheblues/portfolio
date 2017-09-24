@@ -16,8 +16,9 @@ body {
  font-size: 100%;
  font-family: 'Assistant', 'sans-serif';
  font-weight: 400;
- background-color: #f1f4f6;
+ background-color: $light-grey;
  color: $navy-blue;
+ line-height: 1.5rem;
 }
 
 .container {
@@ -30,10 +31,10 @@ body {
     width: 80%;
   }
   @media screen and (min-width: $break-lg) {
-    width: 75%;
+    width: 70%;
   }
   @media screen and (min-width: $break-xl) {
-    width: 70%;
+    width: 60%;
   }
 }
 
