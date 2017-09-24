@@ -1,20 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Assistant:400');
-
-// Breakpoints
-$break-xxs: 320px;
-$break-xs: 480px;
-$break-s: 768px;
-$break-m: 1024px;
-$break-l: 1366px;
-$break-xl: 1920px;
-
-// Spacing
-$gutter: 1rem;
-
-// Colors
-$navy-blue: #1e2b31;
-$gold-highlight: #9b8f78;
-$white: #fff;
+@import "variable";
 
 html,
 body {
@@ -37,17 +22,17 @@ body {
 
 .container {
   width: 100%;
-  
-  @media screen and (min-width: $break-xs) {
+
+  @media screen and (min-width: $break-sm) {
     width: 90%;
   }
-  @media screen and (min-width: $break-s) {
+  @media screen and (min-width: $break-md) {
     width: 80%;
   }
-  @media screen and (min-width: $break-m) {
+  @media screen and (min-width: $break-lg) {
     width: 75%;
   }
-  @media screen and (min-width: $break-l) {
+  @media screen and (min-width: $break-xl) {
     width: 70%;
   }
 }

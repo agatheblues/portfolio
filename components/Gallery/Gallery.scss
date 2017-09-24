@@ -1,6 +1,4 @@
-$black: #111;
-$transition: all .25s ease-in-out;
-$gutter: 1rem;
+@import "variable";
 
 .gallery-container {
  text-align: center;

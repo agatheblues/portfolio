@@ -1,8 +1,4 @@
-$gutter: 1rem;
-
-// Colors
-$navy-blue: #1e2b31;
-$gold-highlight: #9b8f78;
+@import "variable";
 
 .header-container {
   margin-top: 2*$gutter;

@@ -1,5 +1,4 @@
-$gutter: 1rem;
-$transition: all 3s ease-in-out;
+@import "variable";
 
 .card-wrapper {
   display: inline-block;
@@ -14,8 +13,22 @@ $transition: all 3s ease-in-out;
   cursor: pointer;
 }
 
-.row-item:nth-child(3n + 1) {
-  clear: left;
+@media screen and (min-width: $break-md) {
+  .row-item:nth-child(2n + 1) {
+    clear: left;
+  }
+  .row-item:nth-child(3n + 1) {
+    clear: unset;
+  }
+}
+
+@media screen and (min-width: $break-lg) {
+  .row-item:nth-child(2n + 1) {
+    clear: unset;
+  }
+  .row-item:nth-child(3n + 1) {
+    clear: left;
+  }
 }
 
 .card {
