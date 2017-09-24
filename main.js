@@ -24,10 +24,10 @@ const MainWrapper = createReactClass({
     };
   },
   componentDidMount: function() {
-    var _this = this;
+    const _this = this;
     this.serverRequest =
       axios
-        .get('./static/galleries.json')
+        .get('./static/photography.json')
         .then(function(result) {
           _this.setState({
             galleries: result.data.galleries
@@ -39,7 +39,8 @@ const MainWrapper = createReactClass({
         });
   },
   componentWillUnmount: function() {
-    this.serverRequest.abort();
+    // TODO
+    //this.serverRequest.abort();
   },
   render() {
     return(

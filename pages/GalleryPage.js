@@ -1,39 +1,62 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import {Gallery} from '../components/Gallery/Gallery.js';
 import {Header} from '../components/Header/Header.js';
 import {Footer} from '../components/Footer/Footer.js';
 var createReactClass = require('create-react-class');
 
-// Create new array with URLs for images
-let imgUrlsList = [
-  './static/images/IMG_4666.JPG',
-  './static/images/IMG_4667.JPG',
-  './static/images/IMG_4686.JPG'
-
-];
 
 const GalleryPage = createReactClass({
   propTypes: {
     cardItem: PropTypes.object.isRequired
   },
+  getInitialState: function() {
+    return {
+      galleryContent: []
+    };
+  },
+  componentDidMount: function() {
+    const _this = this;
+    const url = './static/galleries/' + this.props.cardItem.id + '.json';
+
+    _this.serverRequest =
+      axios
+        .get(url)
+        .then(function(result) {
+          _this.setState({
+            galleryContent: result.data.galleryContent
+          });
+        })
+        .catch((error) => {
+          const response = error.response;
+          console.log(response.data.errors);
+        });
+  },
+  componentWillUnmount: function() {
+    // TODO
+    // this.serverRequest.abort();
+  },
   render() {
-    console.log('props', this.props.cardItem);
     return(
       <div>
         <div className="gallery-title-container">
           <h1>{this.props.cardItem.title}</h1>
+          <div className="gallery-metadata-container">
+            <p className="gallery-metadata-item">{this.props.cardItem.location}</p>
+            <span>/</span>
+            <p className="gallery-metadata-item">{this.props.cardItem.year}</p>
+          </div>
         </div>
-        <Gallery imgUrls={imgUrlsList}
-          title={'My title 2'}
-          description={
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-          }/>
-        <Gallery imgUrls={imgUrlsList}
-          title={'My title 2'}
-          description={
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-          }/>
+        {
+          this.state.galleryContent.map((item, index) => {
+            return <Gallery
+              key={index}
+              imgUrls={item.imgUrlsList}
+              title={item.title}
+              description={item.description}/>;
+          })
+        }
         <Footer />
       </div>
     );

@@ -4,6 +4,8 @@
       "title": "Card 1",
       "imgUrl": "./static/images/IMG_4666.JPG",
       "id": "gallery-1",
+      "location": "Cambodia",
+      "year": "2016",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incunt"
     },
     {

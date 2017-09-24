@@ -17,11 +17,20 @@
 }
 
 .gallery-title-container {
-  background-color: #ffffff;
   margin-top: 2*$gutter;
   margin-bottom: $gutter;
 }
 
+.gallery-metadata-container {
+  text-align: center;
+}
+
+.gallery-metadata-item {
+  display: inline-block;
+  padding-left: $gutter/2;
+  padding-right: $gutter/2;
+  color: $gold-highlight;
+}
 
 .gallery-card {
   position: relative;
