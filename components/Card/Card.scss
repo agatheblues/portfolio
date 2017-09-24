@@ -17,9 +17,6 @@
   .row-item:nth-child(2n + 1) {
     clear: left;
   }
-  .row-item:nth-child(3n + 1) {
-    clear: unset;
-  }
 }
 
 @media screen and (min-width: $break-lg) {
