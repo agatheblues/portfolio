@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Gallery} from '../components/Gallery/Gallery.js';
 import {Header} from '../components/Header/Header.js';
 import {Footer} from '../components/Footer/Footer.js';
@@ -13,7 +14,11 @@ let imgUrlsList = [
 ];
 
 const GalleryPage = createReactClass({
+  propTypes: {
+    cardItem: PropTypes.object.isRequired
+  },
   render() {
+    console.log('props', this.props.cardItem);
     return(
       <div>
         <div className="gallery-title-container">
