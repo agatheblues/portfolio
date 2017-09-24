@@ -36,10 +36,12 @@ const Card = createReactClass({
   propTypes: {
     cardItems: PropTypes.array.isRequired
   },
-  handleClick: function(e) {
-    console.log('coucou');
-    console.log(e.target);
-  },
+  makeClickHandler: function(divId) { return function (e) {
+    console.log('coucou', divId);
+    this.setState({
+      galleryClicked: divId
+    });
+  };},
   render() {
     return(
       <section className='card-container'>
@@ -49,7 +51,7 @@ const Card = createReactClass({
               if (!item.linkTo | !item.id) {return;}
               return <div className='col-xs-12 col-sm-6 col-md-4 col-lg-4 row-item'
                 key={index}
-                onClick={this.handleClick}
+                onClick={this.makeClickHandler(item.id)}
                 id={item.id}>
                 <Link to={item.linkTo} id={index}>
                   <div className='card-wrapper'>

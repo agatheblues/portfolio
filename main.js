@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
+import {HashRouter as Router, Route} from 'react-router-dom';
 require('./main.scss');
 import {GalleryPage} from './pages/GalleryPage.js';
 import {AboutPage} from './pages/AboutPage.js';
@@ -13,9 +9,9 @@ import {PhotographyPage} from './pages/PhotographyPage.js';
 import {Header} from './components/Header/Header.js';
 
 const menuItems = [
-  {name: 'Home', link: '/'},
-  {name: 'About', link: '/about'},
-  {name: 'Photography', link: '/photography'}];
+  {name: 'Home', link: '/', exact: true},
+  {name: 'About', link: '/about', exact: false},
+  {name: 'Photography', link: '/photography', exact: false}];
 
 const BasicExample = () => (
   <Router>

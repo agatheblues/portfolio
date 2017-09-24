@@ -44,7 +44,7 @@ const cardItems = [
   {
     title: 'Card 7',
     imgUrl: './data/images/IMG_4666.JPG',
-    id: 'gallery-4',
+    id: 'gallery-7',
     linkTo: '/photography/gallery',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
   }

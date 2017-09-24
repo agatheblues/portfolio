@@ -18,7 +18,7 @@ $gold-highlight: #9b8f78;
   padding: $gutter / 4;
 }
 
-.header-items.active {
+.header-items .active {
   color: $navy-blue;
   border-bottom: solid 1px $gold-highlight;
   text-decoration: none;
