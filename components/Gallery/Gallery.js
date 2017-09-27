@@ -1,7 +1,20 @@
 require('../Gallery/Gallery.scss');
 import PropTypes from 'prop-types';
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 var createReactClass = require('create-react-class');
+
+const PlaceholderComponent = createReactClass({
+  render() {
+    return(
+      <div className="sk-cube-grid">
+        <div className="sk-cube sk-cube1"></div>
+        <div className="sk-cube sk-cube2"></div>
+        <div className="sk-cube sk-cube3"></div>
+      </div>
+    );
+  }
+});
 
 const Gallery = createReactClass({
   getInitialState: function() {
@@ -30,7 +43,11 @@ const Gallery = createReactClass({
               this.props.imgUrls.map((url, index) => {
                 return <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12' key={index}>
                   <div className='gallery-card'>
-                    <img className='gallery-thumbnail' src={url} alt={'Image number ' + (index + 1)}/>
+                    <LazyLoad offset={[-200, 0]}
+                      placeholder={<PlaceholderComponent />}
+                      debounce={500}>
+                      <img className='gallery-thumbnail' src={url} alt={'Image number ' + (index + 1)}/>
+                    </LazyLoad>
                   </div>
                 </div>;
               })
