@@ -32,11 +32,6 @@
   margin-bottom: $gutter;
 }
 
-.card-thumbnail {
-  max-width: 100%;
-  height: auto;
-}
-
 .card-title {
   margin-top: $gutter;
   margin-bottom: $gutter;
@@ -44,4 +39,19 @@
 
 .card-description {
   color: $white;
+}
+
+.card-thumbnail {
+  max-width: 50%;
+  height: auto;
+
+  @media screen and (min-width: $break-sm) {
+    max-width: 60%;
+  }
+  @media screen and (min-width: $break-md) {
+    max-width: 80%;
+  }
+  @media screen and (min-width: $break-lg) {
+    max-width: 100%;
+  }
 }

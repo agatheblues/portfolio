@@ -29,7 +29,7 @@ const MainWrapper = createReactClass({
     const _this = this;
     this.serverRequest =
       axios
-        .get('./static/pages/main.json')
+        .get('./static/main.json')
         .then(function(result) {
           _this.setState({
             projects: result.data.projects,
