@@ -6,15 +6,15 @@ import {GalleryPage} from './pages/GalleryPage.js';
 import {AboutPage} from './pages/AboutPage.js';
 import {PhotographyPage} from './pages/PhotographyPage.js';
 import {ProjectPage} from './pages/ProjectPage.js';
-import {Header} from './components/Header/Header.js';
+import {Project} from './components/Project/Project.js';
 import axios from 'axios';
 
 var createReactClass = require('create-react-class');
 
 const menuItems = [
   {name: 'Projects', link: '/', exact: true},
-  {name: 'About', link: '/about', exact: false},
-  {name: 'Photography', link: '/photography', exact: false}];
+  {name: 'Photography', link: '/photography', exact: false},
+  {name: 'About', link: '/about', exact: false}];
 
 
 const MainWrapper = createReactClass({
@@ -51,15 +51,14 @@ const MainWrapper = createReactClass({
     return(
       <Router>
         <div>
-          <Header menuItems={menuItems}/>
           <Route exact path="/" render={(props) => (
-            <ProjectPage {...props} cardItems={this.state.projects} />
+            <ProjectPage {...props} menuItems={menuItems} cardItems={this.state.projects} />
           )}/>
           <Route exact path="/about" render={(props) => (
-            <AboutPage {...props} aboutContent={this.state.about} />
+            <AboutPage {...props}  menuItems={menuItems} aboutContent={this.state.about} />
           )}/>
           <Route exact path="/photography" render={(props) => (
-            <PhotographyPage {...props} cardItems={this.state.photography.galleries} />
+            <PhotographyPage {...props}  menuItems={menuItems} cardItems={this.state.photography.galleries} />
           )}/>
           {
             this.state.photography.galleries.map((item, index) => {
@@ -68,20 +67,11 @@ const MainWrapper = createReactClass({
               return <Route exact
                 path={galleryPath}
                 key={index}
-                render={(props) => <GalleryPage {...props} cardItem={item}/>}/>;
+                render={(props) => <GalleryPage {...props} menuItems={menuItems} cardItem={item}/>}/>;
             })
           }
 
-          {
-            this.state.projects.map((item, index) => {
-              if (!item.id) {return;}
-              const projectPath = '/projects/' + item.id;
-              return <Route exact
-                path={projectPath}
-                key={index}
-                render={(props) => <GalleryPage {...props} cardItem={item}/>}/>;
-            })
-          }
+
         </div>
       </Router>
     );
@@ -94,3 +84,14 @@ ReactDOM.render(
   <MainWrapper />,
   document.querySelector('.container')
 );
+//
+// {
+//   this.state.projects.map((item, index) => {
+//     if (!item.id) {return;}
+//     const projectPath = '/projects/' + item.id;
+//     return <Route exact
+//       path={projectPath}
+//       key={index}
+//       render={(props) => <Project {...props} cardItem={item}/>}/>;
+//   })
+// }

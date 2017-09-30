@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Header} from '../components/Header/Header.js';
 import {ColumnContent} from '../components/ColumnContent/ColumnContent.js';
 var createReactClass = require('create-react-class');
 
 const AboutPage = createReactClass({
   propTypes: {
-    aboutContent: PropTypes.object.isRequired
+    aboutContent: PropTypes.object.isRequired,
+    menuItems: PropTypes.array.isRequired
   },
   render() {
     var { aboutContent } = this.props;
 
     return(
       <div>
+        <Header menuItems={this.props.menuItems}/>
         <div className='row'>
           <ColumnContent
             title={aboutContent.aboutMe.title}

@@ -9,7 +9,8 @@ var createReactClass = require('create-react-class');
 
 const GalleryPage = createReactClass({
   propTypes: {
-    cardItem: PropTypes.object.isRequired
+    cardItem: PropTypes.object.isRequired,
+    menuItems: PropTypes.array.isRequired
   },
   getInitialState: function() {
     return {
@@ -40,6 +41,7 @@ const GalleryPage = createReactClass({
   render() {
     return(
       <div>
+        <Header menuItems={this.props.menuItems}/>
         <div className="gallery-title-container">
           <h1>{this.props.cardItem.title}</h1>
           <div className="gallery-metadata-container">
