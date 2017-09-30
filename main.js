@@ -11,6 +11,10 @@ import axios from 'axios';
 
 var createReactClass = require('create-react-class');
 
+if (process.env.NODE_ENV !== 'production') {
+  console.log('Looks like we are in development mode!');
+}
+
 const menuItems = [
   {name: 'Projects', link: '/projects', exact: false},
   {name: 'Photography', link: '/photography', exact: false},

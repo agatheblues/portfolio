@@ -4,7 +4,8 @@
   "description": "portfolio",
   "main": "main.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "SET NODE_ENV=development & webpack-dev-server --open --config webpack.dev.config.js",
+    "build": "webpack --config webpack.prod.config.js"
   },
   "author": "Agathe Lenclen",
   "license": "ISC",
