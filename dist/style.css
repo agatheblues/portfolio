@@ -140,7 +140,8 @@
   text-decoration: none;
   text-shadow: 0px 1px 0px #9b8f78;
   margin: 20px auto 20px auto;
-  display: block; }
+  display: block;
+  outline: 0; }
 
 .button:hover {
   background-color: #9b8f78; }
@@ -170,7 +171,8 @@ svg {
   border-radius: 8px;
   height: 1px;
   border: 1px solid #BFBFBF;
-  background-color: #fff; }
+  background-color: #fff;
+  outline: 0; }
 
 .input-range::-webkit-slider-thumb {
   -webkit-appearance: none;
