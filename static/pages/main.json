@@ -12,15 +12,36 @@
       ]
   },
   "about": {
-    "about-me": {
-      "title": "About me",
+    "aboutMe": {
+      "title": "Hi there!",
       "description": [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+        "I'm a data visualisation freak.",
+        "Also, I'm a music lover.",
+        "Apart from those two things, I practice {{photography}} as a hobby and like to {{code}} some stuff in my week-ends.",
+        "Note: my website is under construction! And before you ask, I used React to build it, for fun."
       ]
     },
     "contact": {
-      
+      "title": "Grab a coffee?",
+      "description": [
+        "I appreciate feedback! Would you have any comment, or want to get in touch, write to me at {{lenclen.agathe@gmail.com}}."
+      ]
+    },
+    "note": {
+      "title": "Note",
+      "description": [
+        "My website is under construction! And before you ask, I used React to build it, for fun."
+      ]
+    },
+    "links":{
+      "photography": {
+          "url": "/photography",
+          "isExternal": false
+      },
+      "code": {
+          "url": "https://github.com/agatheblues",
+          "isExternal": true
+      }
     }
   }
 }

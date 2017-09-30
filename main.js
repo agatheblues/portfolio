@@ -4,7 +4,6 @@ import {HashRouter as Router, Route} from 'react-router-dom';
 require('./main.scss');
 import {GalleryPage} from './pages/GalleryPage.js';
 import {AboutPage} from './pages/AboutPage.js';
-import {HomePage} from './pages/HomePage.js';
 import {PhotographyPage} from './pages/PhotographyPage.js';
 import {Header} from './components/Header/Header.js';
 import axios from 'axios';
@@ -13,16 +12,13 @@ var createReactClass = require('create-react-class');
 
 const menuItems = [
   {name: 'About', link: '/', exact: true},
-  // {name: 'About', link: '/about', exact: false},
   {name: 'Photography', link: '/photography', exact: false}];
 
 
 const MainWrapper = createReactClass({
   getInitialState: function() {
     return {
-      photography: {
-        galleries:[]
-      },
+      photography: {},
       about: {}
     };
   },
@@ -47,14 +43,14 @@ const MainWrapper = createReactClass({
     //this.serverRequest.abort();
   },
   render() {
+    if (Object.keys(this.state.photography).length === 0 && Object.keys(this.state.about).length === 0) return false;
     return(
       <Router>
         <div>
           <Header menuItems={menuItems}/>
-          <Route exact path="/" component={HomePage}/>
-          {
-            // <Route exact path="/about" component={AboutPage}/>
-          }
+          <Route exact path="/" render={(props) => (
+            <AboutPage {...props} aboutContent={this.state.about} />
+          )}/>
           <Route exact path="/photography" render={(props) => (
             <PhotographyPage {...props} cardItems={this.state.photography.galleries} />
           )}/>

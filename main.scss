@@ -16,8 +16,8 @@ body {
   font-size: 100%;
   font-family: 'Assistant', 'sans-serif';
   font-weight: 400;
-  background-color: $light-grey;
-  color: $navy-blue;
+  background-color: $navy-blue;
+  color: $white;
   line-height: 1.5rem;
 }
 
@@ -70,12 +70,13 @@ hr {
 }
 
 a {
-  color: $navy-blue;
+  color: $white;
   text-decoration: none;
+  padding-bottom: $gutter / 2;
 }
 
 a:hover, a:focus, a:active {
-  color: $navy-blue;
+  color: $gold-highlight;
   text-decoration: none;
 }
 
@@ -152,3 +153,7 @@ ul {
       transform: scale3D(0, 0, 1);
     }
   }
+
+.highlight {
+  color: $gold-highlight
+}

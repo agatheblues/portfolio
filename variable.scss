@@ -10,16 +10,14 @@ $break-xl: 1200px;
 $gutter: 1rem;
 
 // Colors
-// $navy-blue: #1e2b31;
-// $gold-highlight: #9b8f78;
-// $white: #fff;
-// $black: #111;
-// $light-grey: #f1f4f6;
+// $white: $navy-blue;
+// $gold-highlight: $gold-highlight;
+// $gold-highlight: $white;
+// $navy-blue: #111;
+// $navy-blue: #f1f4f6;
 
-$navy-blue: #fff;
+$white: #fff;
 $gold-highlight: #9b8f78;
-$white: #9b8f78;
-$black: #1e2b31;
-$light-grey: #1e2b31;
+$navy-blue: #1e2b31;
 
 $transition: all 3s ease-in-out;
