@@ -1,0 +1,26 @@
+{
+  "photography": {
+    "galleries": [
+        {
+          "title": "Ten Days in Cambodia",
+          "imgUrl": "./static/images/cambodia/gallery-4/005-14.jpg",
+          "id": "ten-days-in-cambodia",
+          "location": "Cambodia",
+          "year": "2016",
+          "description": "Photos and notes from my trip in Cambodia, sharing the first ten days of my friend's road trip in Asia."
+        }
+      ]
+  },
+  "about": {
+    "about-me": {
+      "title": "About me",
+      "description": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+      ]
+    },
+    "contact": {
+      
+    }
+  }
+}

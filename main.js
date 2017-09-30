@@ -12,25 +12,29 @@ import axios from 'axios';
 var createReactClass = require('create-react-class');
 
 const menuItems = [
-  {name: 'Home', link: '/', exact: true},
-  {name: 'About', link: '/about', exact: false},
+  {name: 'About', link: '/', exact: true},
+  // {name: 'About', link: '/about', exact: false},
   {name: 'Photography', link: '/photography', exact: false}];
 
 
 const MainWrapper = createReactClass({
   getInitialState: function() {
     return {
-      galleries: []
+      photography: {
+        galleries:[]
+      },
+      about: {}
     };
   },
   componentDidMount: function() {
     const _this = this;
     this.serverRequest =
       axios
-        .get('./static/photography.json')
+        .get('./static/pages/main.json')
         .then(function(result) {
           _this.setState({
-            galleries: result.data.galleries
+            photography: result.data.photography,
+            about: result.data.about
           });
         })
         .catch((error) => {
@@ -48,12 +52,14 @@ const MainWrapper = createReactClass({
         <div>
           <Header menuItems={menuItems}/>
           <Route exact path="/" component={HomePage}/>
-          <Route exact path="/about" component={AboutPage}/>
+          {
+            // <Route exact path="/about" component={AboutPage}/>
+          }
           <Route exact path="/photography" render={(props) => (
-            <PhotographyPage {...props} cardItems={this.state.galleries} />
+            <PhotographyPage {...props} cardItems={this.state.photography.galleries} />
           )}/>
           {
-            this.state.galleries.map((item, index) => {
+            this.state.photography.galleries.map((item, index) => {
               if (!item.id) {return;}
               const galleryPath = '/photography/' + item.id;
               return <Route exact

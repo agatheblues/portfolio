@@ -43,7 +43,8 @@ const Gallery = createReactClass({
               this.props.imgUrls.map((url, index) => {
                 return <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12' key={index}>
                   <div className='gallery-card'>
-                    <LazyLoad offset={[-200, 0]}
+                    <LazyLoad height={600}
+                      offset={[-200, 0]}
                       placeholder={<PlaceholderComponent />}
                       debounce={500}>
                       <img className='gallery-thumbnail' src={url} alt={'Image number ' + (index + 1)}/>
