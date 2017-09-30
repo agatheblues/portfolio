@@ -11,6 +11,9 @@
   margin-right: auto;
   margin-left: auto; }
 
+.gallery-placeholder {
+  position: relative; }
+
 .gallery-title-container {
   margin-top: 2rem;
   margin-bottom: 1rem; }
@@ -268,6 +271,10 @@ ul {
   margin-bottom: 1rem; }
 
 .sk-cube-grid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 20px;
   height: 20px;
   margin: 20px auto;

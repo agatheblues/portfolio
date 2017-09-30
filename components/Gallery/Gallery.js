@@ -7,10 +7,13 @@ var createReactClass = require('create-react-class');
 const PlaceholderComponent = createReactClass({
   render() {
     return(
-      <div className="sk-cube-grid">
-        <div className="sk-cube sk-cube1"></div>
-        <div className="sk-cube sk-cube2"></div>
-        <div className="sk-cube sk-cube3"></div>
+      <div className='gallery-placeholder'>
+        <img className='gallery-thumbnail' src='./static/images/placeholder.png' alt='placeholder'/>
+        <div className='sk-cube-grid'>
+          <div className='sk-cube sk-cube1'></div>
+          <div className='sk-cube sk-cube2'></div>
+          <div className='sk-cube sk-cube3'></div>
+        </div>
       </div>
     );
   }
@@ -44,9 +47,9 @@ const Gallery = createReactClass({
                 return <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12' key={index}>
                   <div className='gallery-card'>
                     <LazyLoad height={600}
-                      offset={[-200, 0]}
-                      placeholder={<PlaceholderComponent />}
-                      debounce={500}>
+                      placeholder={<PlaceholderComponent/>}
+                      debounce={500}
+                      offset={200}>
                       <img className='gallery-thumbnail' src={url} alt={'Image number ' + (index + 1)}/>
                     </LazyLoad>
                   </div>
