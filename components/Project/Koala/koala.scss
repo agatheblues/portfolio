@@ -1,0 +1,38 @@
+
+text {
+    font: 16px sans-serif;
+    font-style : bold;
+    text-anchor:middle;
+}
+
+
+.mainSVG{
+    margin : auto;
+    margin-bottom : 20px;
+    margin-top : 30px;
+    display : block;
+}
+
+.myButton {
+	-moz-box-shadow:inset 0px 39px 0px -24px #685634;
+	-webkit-box-shadow:inset 0px 39px 0px -24px #685634;
+	box-shadow:inset 0px 39px 0px -24px #685634;
+	background-color:#7B6B43;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #685634;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #685634;
+    margin : auto;
+    display : block;
+}
+
+.myButton:hover {
+	background-color:#685634;
+}

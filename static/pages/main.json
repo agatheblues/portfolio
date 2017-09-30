@@ -1,13 +1,15 @@
 {
-  "projects":  [
-    {
-      "title": "Just hover it",
-      "imgUrl": "./static/images/cambodia/gallery-4/005-14.jpg",
-      "id": "project-koala",
-      "year": "2015",
-      "description": "My first d3.js project, that mimics Koalas To The Max... without the koalas."
-    }
-  ],
+  "projects":  {
+    "projectList": [
+      {
+        "title": "Just hover it",
+        "imgUrl": "./static/images/cambodia/gallery-4/005-14.jpg",
+        "id": "project-koala",
+        "year": "2015",
+        "description": "My first d3.js project, that mimics Koalas To The Max... without the koalas."
+      }
+    ]
+  },
   "photography": {
     "galleries": [
         {

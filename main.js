@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter as Router, Route} from 'react-router-dom';
+import {HashRouter as Router, Route, Redirect} from 'react-router-dom';
 require('./main.scss');
 import {GalleryPage} from './pages/GalleryPage.js';
 import {AboutPage} from './pages/AboutPage.js';
@@ -12,7 +12,7 @@ import axios from 'axios';
 var createReactClass = require('create-react-class');
 
 const menuItems = [
-  {name: 'Projects', link: '/', exact: true},
+  {name: 'Projects', link: '/projects', exact: false},
   {name: 'Photography', link: '/photography', exact: false},
   {name: 'About', link: '/about', exact: false}];
 
@@ -47,12 +47,17 @@ const MainWrapper = createReactClass({
     //this.serverRequest.abort();
   },
   render() {
-    if (Object.keys(this.state.photography).length === 0 && Object.keys(this.state.about).length === 0) return false;
+
+    if (Object.keys(this.state.photography).length === 0
+    && Object.keys(this.state.about).length === 0
+    && Object.keys(this.state.projects).length === 0) return false;
+
     return(
       <Router>
         <div>
-          <Route exact path="/" render={(props) => (
-            <ProjectPage {...props} menuItems={menuItems} cardItems={this.state.projects} />
+          <Route exact path="/" render={() => (<Redirect to="/projects"/>)}/>
+          <Route exact path="/projects" render={(props) => (
+            <ProjectPage {...props} menuItems={menuItems} cardItems={this.state.projects.projectList} />
           )}/>
           <Route exact path="/about" render={(props) => (
             <AboutPage {...props}  menuItems={menuItems} aboutContent={this.state.about} />
@@ -71,7 +76,16 @@ const MainWrapper = createReactClass({
             })
           }
 
-
+          {
+            this.state.projects.projectList.map((item, index) => {
+              if (!item.id) {return;}
+              const projectPath = '/projects/' + item.id;
+              return <Route exact
+                path={projectPath}
+                key={index}
+                render={(props) => <Project {...props} menuItems={menuItems} cardItem={item}/>}/>;
+            })
+          }
         </div>
       </Router>
     );
@@ -84,14 +98,3 @@ ReactDOM.render(
   <MainWrapper />,
   document.querySelector('.container')
 );
-//
-// {
-//   this.state.projects.map((item, index) => {
-//     if (!item.id) {return;}
-//     const projectPath = '/projects/' + item.id;
-//     return <Route exact
-//       path={projectPath}
-//       key={index}
-//       render={(props) => <Project {...props} cardItem={item}/>}/>;
-//   })
-// }
