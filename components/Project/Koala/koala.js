@@ -14,8 +14,8 @@ const Koala = createReactClass({
   render() {
     return (
       <div>
-        <div id='dots'></div>
-        <button id="recommencer" className="myButton">Do it again!</button>
+        <div id='dots' className='koala-container'></div>
+        <button id="recommencer" className="button">Do it again!</button>
       </div>
     );
   }
@@ -72,7 +72,11 @@ function colorScale() {
 }
 
 function main(){
-  var w = document.documentElement.clientHeight - 100;
+  var margin = {top: 50, right: 50, bottom: 50, left: 50};
+  var width = parseInt(d3.select('#dots').style('width')) - margin.left - margin.right;
+  var height = window.innerHeight * 0.75;
+
+  var w = (width > height) ? height : width;
 
   var svg = d3.select('#dots')
     .append('svg')
