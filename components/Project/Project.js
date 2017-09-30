@@ -14,7 +14,7 @@ const Project = createReactClass({
   renderProject: function(){
     switch (this.props.cardItem.id) {
     case 'project-koala':
-      return(<Koala/>);
+      return(<Koala projectData={this.props.cardItem}/>);
       break;
     case 'project-dots-straight-line':
       return(<DotsStraightLine projectData={this.props.cardItem}/>);

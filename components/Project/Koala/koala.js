@@ -7,6 +7,7 @@ var createReactClass = require('create-react-class');
 
 const Koala = createReactClass({
   propTypes: {
+    projectData: PropTypes.object.isRequired
   },
   componentDidMount() {
     main();
@@ -14,6 +15,7 @@ const Koala = createReactClass({
   render() {
     return (
       <div>
+        <h2>{this.props.projectData.title}</h2>
         <div id='dots' className='koala-container'></div>
         <button id="recommencer" className="button">Do it again!</button>
       </div>
@@ -74,7 +76,7 @@ function colorScale() {
 function main(){
   var margin = {top: 50, right: 50, bottom: 50, left: 50};
   var width = parseInt(d3.select('#dots').style('width')) - margin.left - margin.right;
-  var height = window.innerHeight * 0.75;
+  var height = window.innerHeight * 0.6;
 
   var w = (width > height) ? height : width;
 
