@@ -1,4 +1,13 @@
 {
+  "projects":  [
+    {
+      "title": "Just hover it",
+      "imgUrl": "./static/images/cambodia/gallery-4/005-14.jpg",
+      "id": "project-koala",
+      "year": "2015",
+      "description": "My first d3.js project, that mimics Koalas To The Max... without the koalas."
+    }
+  ],
   "photography": {
     "galleries": [
         {
@@ -17,8 +26,7 @@
       "description": [
         "I'm a data visualisation freak.",
         "Also, I'm a music lover.",
-        "Apart from those two things, I practice {{photography}} as a hobby and like to {{code}} some stuff in my week-ends.",
-        "Note: my website is under construction! And before you ask, I used React to build it, for fun."
+        "Apart from those two things, I practice {{photography}} as a hobby and like to {{code}} some stuff in my week-ends."
       ]
     },
     "contact": {

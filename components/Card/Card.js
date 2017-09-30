@@ -30,16 +30,17 @@ const CardItem = createReactClass({
 const Card = createReactClass({
   getInitialState: function() {
     return {
-      galleryClicked: ''
+      cardClicked: ''
     };
   },
   propTypes: {
-    cardItems: PropTypes.array.isRequired
+    cardItems: PropTypes.array.isRequired,
+    origin: PropTypes.string.isRequired
   },
   makeClickHandler: function(divId) {
     return function (e) {
       this.setState({
-        galleryClicked: divId
+        cardClicked: divId
       });
     }.bind(this);
   },
@@ -50,12 +51,13 @@ const Card = createReactClass({
           {
             this.props.cardItems.map((item, index) => {
               if (!item.id) {return;}
-              const galleryPath = '/photography/' + item.id;
+              const cardPath = this.props.origin + '/' + item.id;
+
               return <div className='col-xs-12 col-sm-6 col-md-4 col-lg-4 row-item'
                 key={index}
                 onClick={this.makeClickHandler(item.id)}
                 id={item.id}>
-                <Link to={galleryPath} id={index}>
+                <Link to={cardPath} id={index}>
                   <div className='card-wrapper'>
                     <div className='card'>
                       <CardItem imgUrl={item.imgUrl} title={item.title} description={item.description} />

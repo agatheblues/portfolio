@@ -50,7 +50,7 @@ const ColumnContent = createReactClass({
         <div className='column-title'>
           <h2>{this.props.title}</h2>
         </div>
-        <hr className='hline-seperator'></hr>
+
         {
           this.props.description.map((text, index) => {
             return (

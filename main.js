@@ -5,19 +5,22 @@ require('./main.scss');
 import {GalleryPage} from './pages/GalleryPage.js';
 import {AboutPage} from './pages/AboutPage.js';
 import {PhotographyPage} from './pages/PhotographyPage.js';
+import {ProjectPage} from './pages/ProjectPage.js';
 import {Header} from './components/Header/Header.js';
 import axios from 'axios';
 
 var createReactClass = require('create-react-class');
 
 const menuItems = [
-  {name: 'About', link: '/', exact: true},
+  {name: 'Projects', link: '/', exact: true},
+  {name: 'About', link: '/about', exact: false},
   {name: 'Photography', link: '/photography', exact: false}];
 
 
 const MainWrapper = createReactClass({
   getInitialState: function() {
     return {
+      projects: {},
       photography: {},
       about: {}
     };
@@ -29,6 +32,7 @@ const MainWrapper = createReactClass({
         .get('./static/pages/main.json')
         .then(function(result) {
           _this.setState({
+            projects: result.data.projects,
             photography: result.data.photography,
             about: result.data.about
           });
@@ -49,6 +53,9 @@ const MainWrapper = createReactClass({
         <div>
           <Header menuItems={menuItems}/>
           <Route exact path="/" render={(props) => (
+            <ProjectPage {...props} cardItems={this.state.projects} />
+          )}/>
+          <Route exact path="/about" render={(props) => (
             <AboutPage {...props} aboutContent={this.state.about} />
           )}/>
           <Route exact path="/photography" render={(props) => (
@@ -60,6 +67,17 @@ const MainWrapper = createReactClass({
               const galleryPath = '/photography/' + item.id;
               return <Route exact
                 path={galleryPath}
+                key={index}
+                render={(props) => <GalleryPage {...props} cardItem={item}/>}/>;
+            })
+          }
+
+          {
+            this.state.projects.map((item, index) => {
+              if (!item.id) {return;}
+              const projectPath = '/projects/' + item.id;
+              return <Route exact
+                path={projectPath}
                 key={index}
                 render={(props) => <GalleryPage {...props} cardItem={item}/>}/>;
             })
