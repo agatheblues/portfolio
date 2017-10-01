@@ -1,0 +1,21 @@
+{
+  "galleryContent": [
+    {
+      "description": "We fly to Venice in December. At this time of the year, the city seems deserted of its tourists, and only a handful of selfie-sticks are brave enough for the cold. The color of the water is mesmerizing. We walk for hours long, and get lost in the city's surroundings to try to get a grasp of the real life there.",
+      "imgUrlsList": [
+        "./static/images/venise/01.jpg",
+        "./static/images/venise/02.jpg",
+        "./static/images/venise/03.jpg",
+        "./static/images/venise/04.jpg",
+        "./static/images/venise/05.jpg",
+        "./static/images/venise/06.jpg",
+        "./static/images/venise/09.jpg",
+        "./static/images/venise/10.jpg",
+        "./static/images/venise/11.jpg",
+        "./static/images/venise/12.jpg",
+        "./static/images/venise/13.jpg",
+        "./static/images/venise/14.jpg"
+      ]
+    }
+  ]
+}

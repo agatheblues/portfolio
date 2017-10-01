@@ -27,16 +27,25 @@ const Gallery = createReactClass({
   },
   propTypes: {
     imgUrls: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     description: PropTypes.string
+  },
+  renderTitle(){
+    if (this.props.title) {
+      return (
+        <div className='gallery-title'>
+          <h2>{this.props.title}</h2>
+        </div>
+      );
+    } else {
+      return false;
+    }
   },
   render() {
     return(
       <section className='gallery-container'>
         <div className='gallery-wrapper'>
-          <div className='gallery-title'>
-            <h2>{this.props.title}</h2>
-          </div>
+          {this.renderTitle()}
           <div className='gallery-description'>
             <p>{this.props.description}</p>
           </div>

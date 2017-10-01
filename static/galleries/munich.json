@@ -1,0 +1,19 @@
+{
+  "galleryContent": [
+    {
+      "description": "My birthday present, a week-end in Munich at the end of spring. Everything in Munich seems to be a work of art and architecture. Everything seems to have a reason to be at this right place, with this shape and form.",
+      "imgUrlsList": [
+        "./static/images/munich/002.jpg",
+        "./static/images/munich/003.jpg",
+        "./static/images/munich/004.jpg",
+        "./static/images/munich/005.jpg",
+        "./static/images/munich/006.jpg",
+        "./static/images/munich/007.jpg",
+        "./static/images/munich/008.jpg",
+        "./static/images/munich/009.jpg",
+        "./static/images/munich/010.jpg",
+        "./static/images/munich/011.jpg"
+      ]
+    }
+  ]
+}
