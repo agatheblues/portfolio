@@ -13,7 +13,7 @@
         "imgUrl": "./static/images/projects/dots-straight-line.png",
         "id": "project-dots-straight-line",
         "year": "2015",
-        "description": "An attempt to reproduce Koalas To The Max... without the koalas."
+        "description": "With the right easing, it appears as a circle!"
       }
     ]
   },
