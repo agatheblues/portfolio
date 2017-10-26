@@ -116,14 +116,14 @@
   color: #fff; }
 
 .card-thumbnail {
-  max-width: 50%;
+  max-width: 70%;
   height: auto; }
   @media screen and (min-width: 576px) {
     .card-thumbnail {
-      max-width: 60%; } }
+      max-width: 80%; } }
   @media screen and (min-width: 768px) {
     .card-thumbnail {
-      max-width: 80%; } }
+      max-width: 90%; } }
   @media screen and (min-width: 992px) {
     .card-thumbnail {
       max-width: 100%; } }
