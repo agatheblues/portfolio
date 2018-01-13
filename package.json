@@ -30,6 +30,7 @@
     "axios": "^0.16.2",
     "d3": "^4.10.2",
     "node-sass": "^4.5.3",
+    "processing-js": "^1.6.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-lazyload": "^2.2.7",
