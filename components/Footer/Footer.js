@@ -13,7 +13,7 @@ const Footer = createReactClass({
   render() {
     return(
       <div className='footer-container'>
-        <p className='copyright'>All right reserved &#169; 2015-2017 Agathe Lenclen</p>
+        <p className='copyright'>All rights reserved &#169; 2015-2018 Agathe Lenclen</p>
       </div>
     );
   }
