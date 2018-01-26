@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import * as processing from 'processing-js';
 require('../ImageMappingProcessing/ImageMappingProcessing.scss');
 var createReactClass = require('create-react-class');
 
