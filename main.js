@@ -43,7 +43,7 @@ const MainWrapper = createReactClass({
         })
         .catch((error) => {
           const response = error.response;
-          console.log(response.data.errors);
+          console.log(response);
         });
   },
   componentWillUnmount: function() {

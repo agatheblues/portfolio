@@ -33,6 +33,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-lazyload": "^2.2.7",
+    "react-p5-wrapper": "0.0.4",
     "react-router-dom": "^4.2.2"
   }
 }
