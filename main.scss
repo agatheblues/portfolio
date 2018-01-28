@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Assistant:400');
+@import url('https://fonts.googleapis.com/css?family=Lora:400,400i');
 @import "variable";
 
 html,
@@ -40,9 +41,16 @@ body {
 
 h1 {
   text-align: center;
-  // padding: $gutter 0 $gutter 0;
-  // border-bottom: $gold-highlight solid 2px;
-  font-size: 40px;
+  font-family: Lora;
+  font-style: italic;
+  font-size: 36px;
+  margin: 0;
+
+
+  @media screen and (min-width: $break-md) {
+    font-size: 64px;
+    margin: $gutter 0 $gutter 0;
+  }
 }
 
 h2 {
@@ -60,6 +68,7 @@ h3 {
   margin: 0;
   padding: $gutter 0 $gutter 0;
 }
+@import url('https://fonts.googleapis.com/css?family=Lora:400,400i');
 
 p {
   margin: 0;

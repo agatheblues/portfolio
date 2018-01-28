@@ -55,7 +55,7 @@ const ImageMappingProcessing = createReactClass({
                 <div className='ImageMappingProcessing-description'>
                   <p>{this.props.projectData.longDescription}</p>
                 </div>
-                <P5Wrapper sketch={this.sketchBjorkLines} width={this.state.width}/>
+
               </div>
             </section>
           </div>
@@ -63,7 +63,7 @@ const ImageMappingProcessing = createReactClass({
       </div>
     );
   },
-
+  // <P5Wrapper sketch={this.sketchBjorkLines} width={this.state.width}/>
   sketchBjorkLines (p) {
     let img;
     const sliderStep = 2;
