@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import P5Wrapper from 'react-p5-wrapper';
+import {Title} from '../../Title/Title.js';
 import {debounce} from '../../Utils/Utils.js';
 require('../ImageMappingProcessing/ImageMappingProcessing.scss');
 var createReactClass = require('create-react-class');
@@ -39,14 +40,26 @@ const ImageMappingProcessing = createReactClass({
 
   render() {
     return (
-      <div ref={this.setCanvasNode} className='ImageMappingProcessing'>
-        <div className='ImageMappingProcessing-title'>
-          <h2>{this.props.projectData.title}</h2>
+      <div>
+        <Title
+          title={this.props.projectData.projectDetails.title}
+          subtitle={this.props.projectData.projectDetails.subtitle}
+          authors={this.props.projectData.projectDetails.authors}
+          date={this.props.projectData.projectDetails.date}
+        />
+
+        <div className='section-container'>
+          <div className='container'>
+            <section className='section-wrapper'>
+              <div ref={this.setCanvasNode} className='ImageMappingProcessing'>
+                <div className='ImageMappingProcessing-description'>
+                  <p>{this.props.projectData.longDescription}</p>
+                </div>
+                <P5Wrapper sketch={this.sketchBjorkLines} width={this.state.width}/>
+              </div>
+            </section>
+          </div>
         </div>
-        <div className='ImageMappingProcessing-description'>
-          <p>{this.props.projectData.longDescription}</p>
-        </div>
-        <P5Wrapper sketch={this.sketchBjorkLines} width={this.state.width}/>
       </div>
     );
   },

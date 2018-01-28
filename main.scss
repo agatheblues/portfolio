@@ -92,6 +92,12 @@ ul {
   margin-bottom: 1rem;
 }
 
+.hline-seperator--centered {
+  text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .hline-top {
   border-top: $gold-highlight solid 2px;
   width: 100%;

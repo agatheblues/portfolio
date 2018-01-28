@@ -1,22 +1,5 @@
 @import "variable";
 
-
-.ImageMappingProcessing-description {
-  font-size: 14px;
-  margin-bottom: $gutter;
-  text-align: left;
-}
-
-
-.ImageMappingProcessing-title {
-  margin: $gutter 0 $gutter 0;
-}
-
-.ImageMappingProcessing canvas {
-   margin: auto;
-   display: block;
-}
-
 .section-container {
   position: absolute;
   top: 100%;
@@ -33,4 +16,16 @@
   @media screen and (min-width: $break-xl) {
     margin: 15vh;
   }
+}
+
+
+/*** Bar graph ***/
+.bar-graph-container {
+  width: 100%;
+  // height: auto;
+  dominant-baseline: hanging;
+}
+
+.season-number {
+  fill: black;
 }
