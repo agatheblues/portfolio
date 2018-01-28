@@ -54,42 +54,55 @@ const ImageMappingProcessing = createReactClass({
   sketchBjorkLines (p) {
     let img;
     const sliderStep = 2;
-    const threshold = 0;
-    const picWidth = 600;
+    const picWidth = 500;
     let step = Math.round(40 / sliderStep) * sliderStep;
     let canvasWidth = 600;
+    let pixelData = [];
 
     p.preload = function () {
-      img = p.loadImage('components/Project/ImageMappingProcessing/data/debut.jpg');
+      img = p.loadImage('components/Project/ImageMappingProcessing/data/debut2.jpg');
     };
 
     p.setup = function () {
       p.createCanvas(canvasWidth, canvasWidth);
       p.noLoop();
-
       img.loadPixels();
+
+      for (let x = 0; x < picWidth; x++) {
+        for (let y = 0; y < picWidth; y++) {
+          let idx = 4*( x + y * picWidth);
+          let r = img.pixels[ idx ];
+          let g = img.pixels[ idx + 1 ];
+          let b = img.pixels[ idx + 2 ];
+          let a = img.pixels[ idx + 3 ];
+
+          let color = p.color(r, g, b, a);
+          let brightness = p.brightness(color);
+          pixelData[x + y * picWidth] = {
+            'color': color,
+            'rot': brightness * 2 * Math.PI / 255
+          };
+        }
+      }
     };
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-      if (props.width && props.width < 600) {
-        canvasWidth = props.width;
+      if (props.width) {
+        canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
       }
     };
 
     p.mouseMoved = function() {
       let newStep = 0;
-      let speed = Math.abs(p.mouseX - p.pmouseX);
 
       if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth)) {
         if (p.mouseX < 0) {
           newStep = Math.round(40 / sliderStep) * sliderStep;
         } else if (p.mouseX > canvasWidth) {
           newStep = Math.round((2 + sliderStep) / sliderStep) * sliderStep;
-        } else if (speed > threshold) {
-          newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 40, (2 + sliderStep)) / sliderStep) * sliderStep;
         } else {
-          newStep = step;
+          newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 40, (2 + sliderStep)) / sliderStep) * sliderStep;
         }
 
         if (newStep != step) {
@@ -105,22 +118,12 @@ const ImageMappingProcessing = createReactClass({
 
       for (let x = 0; x < picWidth; x += step) {
         for (let y = 0; y < picWidth; y += step) {
-          let idx = 4*( x + y * picWidth);
-          let r = img.pixels[ idx ];
-          let g = img.pixels[ idx + 1 ];
-          let b = img.pixels[ idx + 2 ];
-          let a = img.pixels[ idx + 3 ];
-
-          let color = p.color(r, g, b, a);
-
-          let brightness = p.brightness(color);
-
-          let rot =  p.map(brightness, 0, 255, 0, p.TWO_PI);
+          let pixel = pixelData[x + y * picWidth];
 
           p.push();
           p.translate(p.map(x, 0, picWidth, 0, canvasWidth), p.map(y, 0, picWidth, 0, canvasWidth));
-          p.rotate(rot);
-          p.stroke(color);
+          p.rotate(pixel.rot);
+          p.stroke(pixel.color);
           p.line(- step, - step, step, step);
           p.pop();
         }
