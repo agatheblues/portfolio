@@ -1,13 +1,5 @@
 @import "variable";
 
-
-.ImageMappingProcessing-description {
-  font-size: 14px;
-  margin-bottom: $gutter;
-  text-align: left;
-}
-
-
 .ImageMappingProcessing-title {
   margin: $gutter 0 $gutter 0;
 }
@@ -19,9 +11,11 @@
 
 .section-container {
   position: absolute;
-  top: 100%;
   left: 0;
-  background-color: $gold-highlight;
+  background-color: #f4efe4;
+  width: 100%;
+  top: 100%;
+  height: 100%;
 }
 
 .section-wrapper {
@@ -33,4 +27,9 @@
   @media screen and (min-width: $break-xl) {
     margin: 15vh;
   }
+}
+
+.section-container--second {
+  top: 200%;
+  background-color: #001274;
 }

@@ -20,7 +20,7 @@ const Project = createReactClass({
     case 'project-dots-straight-line':
       return(<DotsStraightLine projectData={this.props.cardItem}/>);
       break;
-    case 'project-image-mapping-processing':
+    case 'project-bjork':
       return(<ImageMappingProcessing projectData={this.props.cardItem}/>);
       break;
     default:
