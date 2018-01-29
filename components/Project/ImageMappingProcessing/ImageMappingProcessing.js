@@ -3,6 +3,7 @@ import React from 'react';
 import P5Wrapper from 'react-p5-wrapper';
 import {Title} from '../../Title/Title.js';
 import {debounce} from '../../Utils/Utils.js';
+import {Methodology} from '../../Methodology/Methodology.js';
 import axios from 'axios';
 require('../ImageMappingProcessing/ImageMappingProcessing.scss');
 var createReactClass = require('create-react-class');
@@ -90,6 +91,14 @@ const ImageMappingProcessing = createReactClass({
                 </div>
                 { this.renderP5Wrapper(this.sketchBjorkPost, this.state.postData) }
               </div>
+            </section>
+          </div>
+        </div>
+
+        <div className='section-container section-container--third section-container--half'>
+          <div className='container'>
+            <section className='section-wrapper'>
+              <Methodology content={this.props.projectData.projectDetails.methodology}/>
             </section>
           </div>
         </div>

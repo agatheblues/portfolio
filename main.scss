@@ -68,7 +68,10 @@ h3 {
   margin: 0;
   padding: $gutter 0 $gutter 0;
 }
-@import url('https://fonts.googleapis.com/css?family=Lora:400,400i');
+
+.section-title {
+  margin: $gutter 0 $gutter 0;
+}
 
 p {
   margin: 0;
