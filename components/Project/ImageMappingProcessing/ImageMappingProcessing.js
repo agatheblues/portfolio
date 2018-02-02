@@ -14,8 +14,9 @@ const ImageMappingProcessing = createReactClass({
     return {
       width: 600,
       load: false,
-      postData: [],
-      debutData: []
+      // postData: [],
+      // debutData: [],
+      homogenicData: [],
     };
   },
 
@@ -24,21 +25,21 @@ const ImageMappingProcessing = createReactClass({
   },
 
   componentDidMount() {
+
     const _this = this;
-    this.serverRequest =
-      axios
-        .get('./static/projects/project-bjork.json')
-        .then(function(result) {
-          _this.setState({
-            postData: result.data.post,
-            debutData: result.data.debut,
-            load: true
-          });
-        })
-        .catch((error) => {
-          const response = error.response;
-          console.log(response);
+    this.serverRequest = axios.all([
+      axios.get('./static/projects/project-bjork-debut.js'),
+      axios.get('./static/projects/project-bjork-post.js')
+    ])
+      .then(axios.spread(function (debut, post) {
+        _this.setState({
+          postData: post.data,
+          debutData: debut.data,
+          // homogenicData: result.data.homogenic,
+          load: true
         });
+      }))
+      .catch(error => console.log(error));
 
     this.setState({
       width: this.canvasNode.clientWidth
@@ -69,6 +70,7 @@ const ImageMappingProcessing = createReactClass({
           date={this.props.projectData.projectDetails.date}
         />
 
+
         <div className='section-container'>
           <div className='container'>
             <section className='section-wrapper'>
@@ -95,7 +97,8 @@ const ImageMappingProcessing = createReactClass({
           </div>
         </div>
 
-        <div className='section-container section-container--third section-container--half'>
+
+        <div className='section-container section-container--fourth section-container--half'>
           <div className='container'>
             <section className='section-wrapper'>
               <Methodology content={this.props.projectData.projectDetails.methodology}/>
@@ -106,6 +109,19 @@ const ImageMappingProcessing = createReactClass({
     );
   },
 
+
+  // <div className='section-container section-container--third'>
+  //   <div className='container'>
+  //     <section className='section-wrapper'>
+  //       <div ref={this.setCanvasNode} className='ImageMappingProcessing'>
+  //         <div className='ImageMappingProcessing-title'>
+  //           <h2>Homogenic</h2>
+  //         </div>
+  //         { this.renderP5Wrapper(this.sketchBjorkHomogenic, this.state.homogenicData) }
+  //       </div>
+  //     </section>
+  //   </div>
+  // </div>
   renderP5Wrapper(sketch, data) {
     if (!this.state.load) {
       return null;
@@ -143,12 +159,7 @@ const ImageMappingProcessing = createReactClass({
       //
       //     let color = p.color(r, g, b, a);
       //     let brightness = p.brightness(color);
-      //     pixelData[x + y * picWidth] = {
-      //       'r': r,
-      //       'g': g,
-      //       'b': b,
-      //       'rot': brightness * 2 * Math.PI / 255
-      //     };
+      //     pixelData[x + y * picWidth] = [r, g, b, Math.round(brightness * 2 * Math.PI / 255 * 100) / 100];
       //   }
       // }
       //
@@ -164,6 +175,7 @@ const ImageMappingProcessing = createReactClass({
       if (props.data) {
         pixelData = props.data;
         hasPixelData = true;
+        p.redraw();
       }
     };
 
@@ -179,7 +191,7 @@ const ImageMappingProcessing = createReactClass({
           newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 40, (2 + sliderStep)) / sliderStep) * sliderStep;
         }
 
-        if (newStep != step) {
+        if (newStep != step && hasPixelData) {
           step = newStep;
           p.redraw();
         }
@@ -188,6 +200,8 @@ const ImageMappingProcessing = createReactClass({
     };
 
     p.draw = function () {
+
+      console.log('redraw debut');
       p.background(p.color('#f4efe4'));
 
       if (hasPixelData) {
@@ -197,8 +211,8 @@ const ImageMappingProcessing = createReactClass({
 
             p.push();
             p.translate(p.map(x, 0, picWidth, 0, canvasWidth), p.map(y, 0, picWidth, 0, canvasWidth));
-            p.rotate(pixel.rot);
-            p.stroke(pixel.r, pixel.g, pixel.b);
+            p.rotate(pixel[3]);
+            p.stroke(pixel[0], pixel[1], pixel[2]);
             p.line(- step, - step, step, step);
             p.pop();
           }
@@ -228,7 +242,7 @@ const ImageMappingProcessing = createReactClass({
 
       // TO GENERATE PIXELDATA ARRAY ON RUNTIME :
       // img.loadPixels();
-
+      //
       // for (let x = 0; x < picWidth; x++) {
       //   for (let y = 0; y < picWidth; y++) {
       //     let idx = 4*( x + y * picWidth);
@@ -236,15 +250,92 @@ const ImageMappingProcessing = createReactClass({
       //     let g = img.pixels[ idx + 1 ];
       //     let b = img.pixels[ idx + 2 ];
       //
-      //     pixelData[x + y * picWidth] = {
-      //       'redValue': r,
-      //       'blueValue': b,
-      //       'greenValue': g
-      //     };
+      //     pixelData[x + y * picWidth] = [r, g, b];
       //   }
       // }
       //
       // console.log('post', pixelData);
+    };
+
+    p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+      if (props.width) {
+        canvasWidth = ( props.width < 600 ) ? props.width : 600;
+        p.resizeCanvas(canvasWidth, canvasWidth);
+      }
+
+      if (props.data) {
+        pixelData = props.data;
+        hasPixelData = true;
+        p.redraw();
+      }
+    };
+
+    p.mouseMoved = function() {
+      let newStep = 0;
+
+      if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth)) {
+        if (p.mouseX < 0) {
+          newStep = Math.round(40 / sliderStep) * sliderStep;
+        } else if (p.mouseX > canvasWidth) {
+          newStep = Math.round((2 + sliderStep) / sliderStep) * sliderStep;
+        } else {
+          newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 40, (2 + sliderStep)) / sliderStep) * sliderStep;
+        }
+
+        if (newStep != step && hasPixelData) {
+          step = newStep;
+          p.redraw();
+        }
+      }
+    };
+
+    p.draw = function () {
+      console.log('redraw post');
+      p.background(p.color('#001274'));
+
+      if (hasPixelData) {
+        for (let x = 0; x < picWidth; x += step) {
+          for (let y = 0; y < picWidth; y += step) {
+            let pixel = pixelData[x + y * picWidth];
+
+            p.push();
+            p.translate(p.map(x, 0, picWidth, 0, canvasWidth), p.map(y, 0, picWidth, 0, canvasWidth));
+
+            // Red
+            p.fill(pixel[0], 0, 0);
+            let redRadius =  p.map(pixel[0], 0, 255, 0, step/2);
+            p.ellipse(0, 0, redRadius, redRadius);
+
+            // Blue
+            p.fill(0, 0, pixel[2]);
+            let blueRadius =  p.map(pixel[2], 0, 255, 0, step/2);
+            p.ellipse(- step/4, step/2, blueRadius, blueRadius);
+
+            // Green
+            p.fill(0, pixel[1], 0);
+            let greenRadius =  p.map(pixel[1], 0, 255, 0, step/2);
+            p.ellipse(step/4, step/2, greenRadius, greenRadius);
+            p.pop();
+
+          }
+        }
+      }
+    };
+  },
+
+  sketchBjorkHomogenic (p) {
+    console.log('COUCOU');
+    let step = 0;
+    const maxStep = 9;
+    const picWidth = 500;
+    let canvasWidth = 600;
+    let pixelData = [];
+    let hasPixelData = false;
+
+    p.setup = function () {
+      p.createCanvas(canvasWidth, canvasWidth);
+      p.noLoop();
+      p.noStroke();
     };
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
@@ -264,11 +355,11 @@ const ImageMappingProcessing = createReactClass({
 
       if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth)) {
         if (p.mouseX < 0) {
-          newStep = Math.round(40 / sliderStep) * sliderStep;
+          newStep = 0;
         } else if (p.mouseX > canvasWidth) {
-          newStep = Math.round((2 + sliderStep) / sliderStep) * sliderStep;
+          newStep = maxStep;
         } else {
-          newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 40, (2 + sliderStep)) / sliderStep) * sliderStep;
+          newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 0, maxStep));
         }
 
         if (newStep != step) {
@@ -279,7 +370,7 @@ const ImageMappingProcessing = createReactClass({
     };
 
     p.draw = function () {
-      p.background(p.color('#001274'));
+      p.background(p.color('#c7203a'));
 
       if (hasPixelData) {
         for (let x = 0; x < picWidth; x += step) {
@@ -289,20 +380,8 @@ const ImageMappingProcessing = createReactClass({
             p.push();
             p.translate(p.map(x, 0, picWidth, 0, canvasWidth), p.map(y, 0, picWidth, 0, canvasWidth));
 
-            // Red
-            p.fill(pixel.redValue, 0, 0);
-            let redRadius =  p.map(pixel.redValue, 0, 255, 0, step/2);
-            p.ellipse(0, 0, redRadius, redRadius);
-
-            // Blue
-            p.fill(0, 0, pixel.blueValue);
-            let blueRadius =  p.map(pixel.blueValue, 0, 255, 0, step/2);
-            p.ellipse(- step/4, step/2, blueRadius, blueRadius);
-
-            // Green
-            p.fill(0, pixel.greenValue, 0);
-            let greenRadius =  p.map(pixel.greenValue, 0, 255, 0, step/2);
-            p.ellipse(step/4, step/2, greenRadius, greenRadius);
+            p.fill('#' + pixel[x + y * picWidth][step]);
+            p.point(0, 0);
             p.pop();
 
           }
