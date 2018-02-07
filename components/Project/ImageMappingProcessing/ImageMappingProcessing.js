@@ -29,13 +29,14 @@ const ImageMappingProcessing = createReactClass({
     const _this = this;
     this.serverRequest = axios.all([
       axios.get('./static/projects/project-bjork-debut.js'),
-      axios.get('./static/projects/project-bjork-post.js')
+      axios.get('./static/projects/project-bjork-post.js'),
+      axios.get('./static/projects/project-bjork-homogenic.js')
     ])
-      .then(axios.spread(function (debut, post) {
+      .then(axios.spread(function (debut, post, homogenic) {
         _this.setState({
           postData: post.data,
           debutData: debut.data,
-          // homogenicData: result.data.homogenic,
+          homogenicData: homogenic.data,
           load: true
         });
       }))
@@ -97,6 +98,18 @@ const ImageMappingProcessing = createReactClass({
           </div>
         </div>
 
+        <div className='section-container section-container--third'>
+          <div className='container'>
+            <section className='section-wrapper'>
+              <div ref={this.setCanvasNode} className='ImageMappingProcessing'>
+                <div className='ImageMappingProcessing-title'>
+                  <h2>Homogenic</h2>
+                </div>
+                { this.renderP5Wrapper(this.sketchBjorkHomogenic, this.state.homogenicData) }
+              </div>
+            </section>
+          </div>
+        </div>
 
         <div className='section-container section-container--fourth section-container--half'>
           <div className='container'>
@@ -109,19 +122,6 @@ const ImageMappingProcessing = createReactClass({
     );
   },
 
-
-  // <div className='section-container section-container--third'>
-  //   <div className='container'>
-  //     <section className='section-wrapper'>
-  //       <div ref={this.setCanvasNode} className='ImageMappingProcessing'>
-  //         <div className='ImageMappingProcessing-title'>
-  //           <h2>Homogenic</h2>
-  //         </div>
-  //         { this.renderP5Wrapper(this.sketchBjorkHomogenic, this.state.homogenicData) }
-  //       </div>
-  //     </section>
-  //   </div>
-  // </div>
   renderP5Wrapper(sketch, data) {
     if (!this.state.load) {
       return null;
@@ -182,14 +182,8 @@ const ImageMappingProcessing = createReactClass({
     p.mouseMoved = function() {
       let newStep = 0;
 
-      if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth)) {
-        if (p.mouseX < 0) {
-          newStep = Math.round(40 / sliderStep) * sliderStep;
-        } else if (p.mouseX > canvasWidth) {
-          newStep = Math.round((2 + sliderStep) / sliderStep) * sliderStep;
-        } else {
-          newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 40, (2 + sliderStep)) / sliderStep) * sliderStep;
-        }
+      if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth) && (p.mouseX >= 0) && (p.mouseX <= canvasWidth)) {
+        newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 40, (2 + sliderStep)) / sliderStep) * sliderStep;
 
         if (newStep != step && hasPixelData) {
           step = newStep;
@@ -238,6 +232,7 @@ const ImageMappingProcessing = createReactClass({
       p.createCanvas(canvasWidth, canvasWidth);
       p.noLoop();
       p.noStroke();
+      p.pixelDensity(3);
 
 
       // TO GENERATE PIXELDATA ARRAY ON RUNTIME :
@@ -273,14 +268,8 @@ const ImageMappingProcessing = createReactClass({
     p.mouseMoved = function() {
       let newStep = 0;
 
-      if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth)) {
-        if (p.mouseX < 0) {
-          newStep = Math.round(40 / sliderStep) * sliderStep;
-        } else if (p.mouseX > canvasWidth) {
-          newStep = Math.round((2 + sliderStep) / sliderStep) * sliderStep;
-        } else {
-          newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 40, (2 + sliderStep)) / sliderStep) * sliderStep;
-        }
+      if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth) && (p.mouseX >= 0) && (p.mouseX <= canvasWidth)) {
+        newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 40, (2 + sliderStep)) / sliderStep) * sliderStep;
 
         if (newStep != step && hasPixelData) {
           step = newStep;
@@ -324,7 +313,6 @@ const ImageMappingProcessing = createReactClass({
   },
 
   sketchBjorkHomogenic (p) {
-    console.log('COUCOU');
     let step = 0;
     const maxStep = 9;
     const picWidth = 500;
@@ -347,20 +335,15 @@ const ImageMappingProcessing = createReactClass({
       if (props.data) {
         pixelData = props.data;
         hasPixelData = true;
+        p.redraw();
       }
     };
 
     p.mouseMoved = function() {
       let newStep = 0;
 
-      if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth)) {
-        if (p.mouseX < 0) {
-          newStep = 0;
-        } else if (p.mouseX > canvasWidth) {
-          newStep = maxStep;
-        } else {
-          newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 0, maxStep));
-        }
+      if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth) && (p.mouseX >= 0) && (p.mouseX <= canvasWidth)) {
+        newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 0, maxStep));
 
         if (newStep != step) {
           step = newStep;
@@ -370,20 +353,16 @@ const ImageMappingProcessing = createReactClass({
     };
 
     p.draw = function () {
+      console.log('draw homogenic ', step);
       p.background(p.color('#c7203a'));
 
       if (hasPixelData) {
-        for (let x = 0; x < picWidth; x += step) {
-          for (let y = 0; y < picWidth; y += step) {
-            let pixel = pixelData[x + y * picWidth];
 
-            p.push();
-            p.translate(p.map(x, 0, picWidth, 0, canvasWidth), p.map(y, 0, picWidth, 0, canvasWidth));
-
-            p.fill('#' + pixel[x + y * picWidth][step]);
-            p.point(0, 0);
-            p.pop();
-
+        for (let x = 0; x < picWidth; x+= 5) {
+          for (let y = 0; y < picWidth; y+=5) {
+            let pixel = pixelData[y + x * picWidth];
+            p.fill(p.color('#' + pixel[step]));
+            p.ellipse(x, y, 5, 5);
           }
         }
       }
