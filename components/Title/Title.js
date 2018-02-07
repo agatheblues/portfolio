@@ -54,7 +54,7 @@ const Title = createReactClass({
       } else {
         if (author.link) {
           return (
-            <p key={index}>&nbsp;&nbsp;<a href={author.link}>{author.name}</a></p>
+            <p key={index}>&nbsp;&nbsp;<a className='link' href={author.link}>{author.name}</a></p>
           );
         } else {
           return (

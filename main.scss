@@ -179,3 +179,21 @@ ul {
 .highlight {
   color: $gold-highlight
 }
+
+
+.link {
+  color: $white;
+  border-bottom: $gold-highlight solid 1px;
+}
+
+.link:hover {
+  color: $gold-highlight;
+}
+
+.link-small {
+  padding-bottom: $gutter/8;
+}
+
+.heart-icon {
+  color: #c7203a;
+}
