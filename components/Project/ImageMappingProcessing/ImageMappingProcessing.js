@@ -37,7 +37,7 @@ const ImageMappingProcessing = createReactClass({
           postData: post.data,
           debutData: debut.data,
           homogenicData: homogenic.data,
-          // load: true
+          load: true
         });
       }))
       .catch(error => console.log(error));
@@ -74,7 +74,7 @@ const ImageMappingProcessing = createReactClass({
 
 
         <div className='section-container'>
-          <div className='container'>
+          <div className='container container--vertical-centered'>
             <section className='section-wrapper'>
               <div ref={this.setCanvasNode} className='ImageMappingProcessing'>
                 <div className='ImageMappingProcessing-title'>
@@ -87,7 +87,7 @@ const ImageMappingProcessing = createReactClass({
         </div>
 
         <div className='section-container section-container--second'>
-          <div className='container'>
+          <div className='container container--vertical-centered'>
             <section className='section-wrapper'>
               <div ref={this.setCanvasNode} className='ImageMappingProcessing'>
                 <div className='ImageMappingProcessing-title'>
@@ -100,7 +100,7 @@ const ImageMappingProcessing = createReactClass({
         </div>
 
         <div className='section-container section-container--third'>
-          <div className='container'>
+          <div className='container container--vertical-centered'>
             <section className='section-wrapper'>
               <div ref={this.setCanvasNode} className='ImageMappingProcessing'>
                 <div className='ImageMappingProcessing-title'>
@@ -113,7 +113,7 @@ const ImageMappingProcessing = createReactClass({
         </div>
 
         <div className='section-container section-container--fourth section-container--half'>
-          <div className='container'>
+          <div className='container container--vertical-centered'>
             <section className='section-wrapper'>
               <Methodology content={this.props.projectData.projectDetails.methodology}/>
               <div className='thanks-container'>
@@ -316,6 +316,8 @@ const ImageMappingProcessing = createReactClass({
 
       p.background(p.color('#001274'));
 
+      let pixWidth = Math.round(p.map(canvasWidth, 0, 600, 0, 5));
+
       if (hasPixelData) {
         for (let x = 0; x < picWidth; x += step) {
           for (let y = 0; y < picWidth; y += step) {
@@ -326,17 +328,17 @@ const ImageMappingProcessing = createReactClass({
 
             // Red
             p.fill(pixel[0], 0, 0);
-            let redRadius =  p.map(pixel[0], 0, 255, 0, step/2);
+            let redRadius =  p.map(pixel[0], 0, 255, 0, pixWidth);
             p.ellipse(0, 0, redRadius, redRadius);
 
             // Blue
             p.fill(0, 0, pixel[2]);
-            let blueRadius =  p.map(pixel[2], 0, 255, 0, step/2);
+            let blueRadius =  p.map(pixel[2], 0, 255, 0, pixWidth);
             p.ellipse(- step/4, step/2, blueRadius, blueRadius);
 
             // Green
             p.fill(0, pixel[1], 0);
-            let greenRadius =  p.map(pixel[1], 0, 255, 0, step/2);
+            let greenRadius =  p.map(pixel[1], 0, 255, 0, pixWidth);
             p.ellipse(step/4, step/2, greenRadius, greenRadius);
             p.pop();
 
@@ -388,6 +390,7 @@ const ImageMappingProcessing = createReactClass({
 
     p.draw = function () {
       p.background(p.color('#c7203a'));
+      let pixWidth = Math.round(p.map(canvasWidth, 0, 600, 0, 5));
 
       if (hasPixelData) {
 
@@ -396,7 +399,7 @@ const ImageMappingProcessing = createReactClass({
             let pixel = pixelData[y + x * picWidth / 5];
 
             p.fill(p.color('#' + pixel[step]));
-            p.rect(p.map(x * 5, 0, picWidth, 0, canvasWidth), p.map(y * 5, 0, picWidth, 0, canvasWidth), 5, 5);
+            p.rect(p.map(x * 5, 0, picWidth, 0, canvasWidth), p.map(y * 5, 0, picWidth, 0, canvasWidth), pixWidth, pixWidth);
           }
         }
 
