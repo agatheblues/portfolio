@@ -43,7 +43,7 @@ const GalleryPage = createReactClass({
       <div>
         <Header menuItems={this.props.menuItems}/>
         <div className="gallery-title-container">
-          <h1>{this.props.cardItem.title}</h1>
+          <h1 className="gallery-title">{this.props.cardItem.title}</h1>
           <div className="gallery-metadata-container">
             <p className="gallery-metadata-item">{this.props.cardItem.location}</p>
             <span>/</span>
