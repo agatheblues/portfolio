@@ -26,7 +26,7 @@ const Slider = createReactClass({
     this.setState({
       value: value
     });
-    this.props.handleSlider(value);
+    this.props.handleSlider(parseInt(value));
   },
 
   render() {

@@ -5,6 +5,7 @@ import {Title} from '../../Title/Title.js';
 import {debounce} from '../../Utils/Utils.js';
 import {Methodology} from '../../Methodology/Methodology.js';
 import {Slider} from '../../Slider/Slider.js';
+import {P5BjorkSketch} from './P5BjorkSketch/P5BjorkSketch.js';
 import axios from 'axios';
 require('../ImageMappingProcessing/ImageMappingProcessing.scss');
 var createReactClass = require('create-react-class');
@@ -19,7 +20,7 @@ const ImageMappingProcessing = createReactClass({
       debutData: [],
       homogenicData: [],
       debutValue: 4,
-      postValue: 2,
+      postValue: 8,
       homogenicValue: 0
     };
   },
@@ -84,6 +85,7 @@ const ImageMappingProcessing = createReactClass({
   },
 
   render() {
+    console.log('IM RENDERING!!!' + this.state.debutValue);
 
     return (
       <div>
@@ -102,8 +104,8 @@ const ImageMappingProcessing = createReactClass({
                 <div className='ImageMappingProcessing-title'>
                   <h2>Debut</h2>
                 </div>
-                { this.renderP5Wrapper(this.sketchBjorkDebut, this.state.debutData, this.state.debutValue) }
-                <Slider min={4} max={40} handleSlider={debounce(this.handleDebutSlider,200)} defaultValue={4} step={4}/>
+                <P5BjorkSketch sketch={this.sketchBjorkDebut} data={this.state.debutData} value={this.state.debutValue} load={this.state.load} width={this.state.width} />
+                <Slider min={4} max={40} handleSlider={debounce(this.handleDebutSlider,100)} defaultValue={4} step={4}/>
               </div>
             </section>
           </div>
@@ -116,8 +118,8 @@ const ImageMappingProcessing = createReactClass({
                 <div className='ImageMappingProcessing-title'>
                   <h2>Post</h2>
                 </div>
-                { this.renderP5Wrapper(this.sketchBjorkPost, this.state.postData, this.state.postValue) }
-                <Slider min={2} max={40} handleSlider={debounce(this.handlePostSlider, 200)} defaultValue={2} step={2}/>
+                <P5BjorkSketch sketch={this.sketchBjorkPost} data={this.state.postData} value={this.state.postValue} load={this.state.load} width={this.state.width} />
+                <Slider min={8} max={40} handleSlider={debounce(this.handlePostSlider, 100)} defaultValue={8} step={4}/>
               </div>
             </section>
           </div>
@@ -130,8 +132,8 @@ const ImageMappingProcessing = createReactClass({
                 <div className='ImageMappingProcessing-title'>
                   <h2>Homogenic</h2>
                 </div>
-                { this.renderP5Wrapper(this.sketchBjorkHomogenic, this.state.homogenicData, this.state.homogenicValue) }
-                <Slider min={0} max={9} handleSlider={debounce(this.handleHomogenicSlider, 200)} defaultValue={0}/>
+                <P5BjorkSketch sketch={this.sketchBjorkHomogenic} data={this.state.homogenicData} value={this.state.homogenicValue} load={this.state.load} width={this.state.width} />
+                <Slider min={0} max={9} handleSlider={debounce(this.handleHomogenicSlider, 100)} defaultValue={0}/>
               </div>
             </section>
           </div>
@@ -151,51 +153,16 @@ const ImageMappingProcessing = createReactClass({
     );
   },
 
-
-  renderP5Wrapper(sketch, data, value) {
-    if (!this.state.load) {
-      return <P5Wrapper sketch={this.loader} width={this.state.width} value={value}/>;
-    }
-    return <P5Wrapper sketch={sketch} width={this.state.width} data={data} value={value}/>;
-  },
-
-  loader (p) {
-    let canvasWidth = 600;
-    let r1 = 0, alpha = 255;
-
-    p.setup = function () {
-      p.createCanvas(canvasWidth, canvasWidth);
-      p.noStroke();
-    };
-
-    p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-      if (props.width) {
-        canvasWidth = ( props.width < 600 ) ? props.width : 600;
-        p.resizeCanvas(canvasWidth, canvasWidth);
-      }
-    };
-
-    p.draw = function() {
-      p.clear();
-      p.fill(155, 143, 120, alpha);
-      p.ellipse(canvasWidth/2, canvasWidth/2, r1, r1);
-
-      r1 = (r1 + 0.5 > 50) ? 0 : r1 + 0.5;
-      alpha = p.map(r1, 0, 50, 255, 0);
-    };
-  },
-
-
   sketchBjorkDebut (p) {
     let img;
-    const sliderStep = 2;
     const picWidth = 500;
     let maxStep = 40;
     let minStep = 4;
-    let step = Math.round(maxStep / sliderStep) * sliderStep;
+    let step = 40;
     let canvasWidth = 600;
     let pixelData = [];
     let hasPixelData = false;
+    let drawingIndex = 0;
 
     // p.preload = function () {
     //   img = p.loadImage('components/Project/ImageMappingProcessing/data/debut.jpg');
@@ -226,34 +193,38 @@ const ImageMappingProcessing = createReactClass({
     };
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-      if (props.width) {
+      console.log('props:', props);
+      if (props.width && (props.width != canvasWidth)) {
         canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
-        p.redraw();
+        setTimeout(() => p.redraw(), 100);
       }
 
-      if (props.data) {
+      if (props.data && !hasPixelData) {
         pixelData = props.data;
         hasPixelData = true;
-        p.redraw();
+        setTimeout(() => p.redraw(), 100);
       }
 
-      if (props.value) {
-        let newStep = p.map(props.value, maxStep, minStep, minStep, maxStep);
-        if (step != newStep && hasPixelData) {
-          step = newStep;
-          p.redraw();
-        }
+      let newStep = p.map(props.value, maxStep, minStep, minStep, maxStep);
+      if (step != newStep && hasPixelData) {
+        step = newStep;
+        drawingIndex = 0;
+        setTimeout(() => p.redraw(), 100);
       }
     };
 
     p.draw = function () {
+      console.log('debut is drawing');
 
-      p.background(p.color('#f4efe4'));
+      if (drawingIndex == 0) {
+        console.log('draw bg');
+        p.background(p.color('#f4efe4'));
+      }
 
-      if (hasPixelData) {
+      if (hasPixelData && (drawingIndex < picWidth - step)) {
         for (let x = 0; x < picWidth; x += step) {
-          for (let y = 0; y < picWidth; y += step) {
+          for (let y = drawingIndex; y < drawingIndex + step; y += step) {
             let pixel = pixelData[x + y * picWidth];
 
             p.push();
@@ -264,6 +235,9 @@ const ImageMappingProcessing = createReactClass({
             p.pop();
           }
         }
+
+        drawingIndex = drawingIndex + step;
+        setTimeout(() => p.redraw(), 100);
       }
     };
   },
@@ -275,7 +249,7 @@ const ImageMappingProcessing = createReactClass({
     let canvasWidth = 600;
     let pixelData = [];
     let maxStep = 40;
-    let minStep = 2;
+    let minStep = 8;
     let step = Math.round(maxStep / sliderStep) * sliderStep;
     let hasPixelData = false;
 
@@ -334,7 +308,7 @@ const ImageMappingProcessing = createReactClass({
 
       p.background(p.color('#001274'));
 
-      let pixWidth = Math.round(p.map(canvasWidth, 0, 600, 0, step/3));
+      let pixWidth = Math.round(p.map(canvasWidth, 0, 600, 0, step/2));
 
       if (hasPixelData) {
         for (let x = 0; x < picWidth; x += step) {
