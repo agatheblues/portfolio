@@ -1,4 +1,5 @@
 require('../DotsStraightLine/DotsStraightLine.scss');
+import {Slider} from '../../Slider/Slider.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 import * as d3 from 'd3';
@@ -166,8 +167,7 @@ const DotsStraightLine = createReactClass({
   componentDidMount() {
     this.main();
   },
-  handleSlider: function(event) {
-    var value = event.target.value;
+  handleSlider: function(value) {
     this.setState({
       dataset: new Array(parseInt(value)),
       nbLines: value
@@ -184,16 +184,7 @@ const DotsStraightLine = createReactClass({
 
         <div className='slider-container'>
           <p id='slider'>Number of circles</p>
-          <div className='range-container'>
-            <input type='range'
-              min='1'
-              max='30'
-              id='nData'
-              value={this.state.nbLines}
-              className='input-range'
-              onChange={this.handleSlider}>
-            </input>
-          </div>
+          <Slider min={1} max={30} id={'nData'} defaultValue={15} handleSlider={this.handleSlider} />
           <p>{this.state.nbLines}</p>
         </div>
       </div>

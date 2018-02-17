@@ -26,35 +26,12 @@ svg {
 }
 
 /*Slider*/
-.input-range {
-  -webkit-appearance: none;
-  width: 100%;
-  border-radius: 8px;
-  height: 1px;
-  border: 1px solid #BFBFBF;
-  background-color: #fff;
-  outline: 0;
-}
-
-.input-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background-color: $gold-highlight;
-  width: 15px;
-  height: 15px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
 .slider-container {
   text-align: center;
+  width: 30%;
+  margin: auto; 
 }
 
 .slider-container p {
   margin: $gutter 0 $gutter 0;
-}
-
-.range-container {
-  width: 30%;
-  text-align: center;
-  display: inline-block;
 }

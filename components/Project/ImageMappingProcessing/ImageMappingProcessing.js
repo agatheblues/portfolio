@@ -4,6 +4,7 @@ import P5Wrapper from 'react-p5-wrapper';
 import {Title} from '../../Title/Title.js';
 import {debounce} from '../../Utils/Utils.js';
 import {Methodology} from '../../Methodology/Methodology.js';
+import {Slider} from '../../Slider/Slider.js';
 import axios from 'axios';
 require('../ImageMappingProcessing/ImageMappingProcessing.scss');
 var createReactClass = require('create-react-class');
@@ -17,6 +18,9 @@ const ImageMappingProcessing = createReactClass({
       postData: [],
       debutData: [],
       homogenicData: [],
+      debutValue: 4,
+      postValue: 2,
+      homogenicValue: 0
     };
   },
 
@@ -61,6 +65,24 @@ const ImageMappingProcessing = createReactClass({
     });
   },
 
+  handleDebutSlider(value) {
+    this.setState({
+      debutValue: value
+    });
+  },
+
+  handlePostSlider(value) {
+    this.setState({
+      postValue: value
+    });
+  },
+
+  handleHomogenicSlider(value) {
+    this.setState({
+      homogenicValue: value
+    });
+  },
+
   render() {
 
     return (
@@ -80,7 +102,8 @@ const ImageMappingProcessing = createReactClass({
                 <div className='ImageMappingProcessing-title'>
                   <h2>Debut</h2>
                 </div>
-                { this.renderP5Wrapper(this.sketchBjorkDebut, this.state.debutData) }
+                { this.renderP5Wrapper(this.sketchBjorkDebut, this.state.debutData, this.state.debutValue) }
+                <Slider min={4} max={40} handleSlider={this.handleDebutSlider} defaultValue={4}/>
               </div>
             </section>
           </div>
@@ -93,7 +116,8 @@ const ImageMappingProcessing = createReactClass({
                 <div className='ImageMappingProcessing-title'>
                   <h2>Post</h2>
                 </div>
-                { this.renderP5Wrapper(this.sketchBjorkPost, this.state.postData) }
+                { this.renderP5Wrapper(this.sketchBjorkPost, this.state.postData, this.state.postValue) }
+                <Slider min={2} max={40} handleSlider={this.handlePostSlider} defaultValue={2}/>
               </div>
             </section>
           </div>
@@ -106,7 +130,8 @@ const ImageMappingProcessing = createReactClass({
                 <div className='ImageMappingProcessing-title'>
                   <h2>Homogenic</h2>
                 </div>
-                { this.renderP5Wrapper(this.sketchBjorkHomogenic, this.state.homogenicData) }
+                { this.renderP5Wrapper(this.sketchBjorkHomogenic, this.state.homogenicData, this.state.homogenicValue) }
+                <Slider min={0} max={9} handleSlider={this.handleHomogenicSlider} defaultValue={0}/>
               </div>
             </section>
           </div>
@@ -126,11 +151,12 @@ const ImageMappingProcessing = createReactClass({
     );
   },
 
-  renderP5Wrapper(sketch, data) {
+
+  renderP5Wrapper(sketch, data, value) {
     if (!this.state.load) {
-      return <P5Wrapper sketch={this.loader} width={this.state.width}/>;
+      return <P5Wrapper sketch={this.loader} width={this.state.width} value={value}/>;
     }
-    return <P5Wrapper sketch={sketch} width={this.state.width} data={data}/>;
+    return <P5Wrapper sketch={sketch} width={this.state.width} data={data} value={value}/>;
   },
 
   loader (p) {
@@ -203,6 +229,7 @@ const ImageMappingProcessing = createReactClass({
       if (props.width) {
         canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
+        p.redraw();
       }
 
       if (props.data) {
@@ -210,20 +237,14 @@ const ImageMappingProcessing = createReactClass({
         hasPixelData = true;
         p.redraw();
       }
-    };
 
-    p.mouseMoved = function() {
-      let newStep = 0;
-
-      if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth) && (p.mouseX >= 0) && (p.mouseX <= canvasWidth)) {
-        newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, maxStep, (minStep + sliderStep)) / sliderStep) * sliderStep;
-
-        if (newStep != step && hasPixelData) {
+      if (props.value) {
+        let newStep = p.map(props.value, maxStep, minStep, minStep, maxStep);
+        if (step != newStep && hasPixelData) {
           step = newStep;
           p.redraw();
         }
       }
-
     };
 
     p.draw = function () {
@@ -254,7 +275,7 @@ const ImageMappingProcessing = createReactClass({
     let canvasWidth = 600;
     let pixelData = [];
     let maxStep = 40;
-    let minStep = 4;
+    let minStep = 2;
     let step = Math.round(maxStep / sliderStep) * sliderStep;
     let hasPixelData = false;
 
@@ -290,6 +311,7 @@ const ImageMappingProcessing = createReactClass({
       if (props.width) {
         canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
+        p.redraw();
       }
 
       if (props.data) {
@@ -297,26 +319,22 @@ const ImageMappingProcessing = createReactClass({
         hasPixelData = true;
         p.redraw();
       }
-    };
 
-    p.mouseMoved = function() {
-      let newStep = 0;
-
-      if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth) && (p.mouseX >= 0) && (p.mouseX <= canvasWidth)) {
-        newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, maxStep, (minStep + sliderStep)) / sliderStep) * sliderStep;
-
-        if (newStep != step && hasPixelData) {
+      if (props.value) {
+        let newStep = p.map(props.value, maxStep, minStep, minStep, maxStep);
+        if (step != newStep && hasPixelData) {
           step = newStep;
           p.redraw();
         }
       }
     };
 
+
     p.draw = function () {
 
       p.background(p.color('#001274'));
 
-      let pixWidth = Math.round(p.map(canvasWidth, 0, 600, 0, 5));
+      let pixWidth = Math.round(p.map(canvasWidth, 0, 600, 0, step/3));
 
       if (hasPixelData) {
         for (let x = 0; x < picWidth; x += step) {
@@ -366,6 +384,7 @@ const ImageMappingProcessing = createReactClass({
       if (props.width) {
         canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
+        p.redraw();
       }
 
       if (props.data) {
@@ -373,15 +392,10 @@ const ImageMappingProcessing = createReactClass({
         hasPixelData = true;
         p.redraw();
       }
-    };
 
-    p.mouseMoved = function() {
-      let newStep = 0;
-
-      if ((p.mouseY >= 0) && (p.mouseY <= canvasWidth) && (p.mouseX >= 0) && (p.mouseX <= canvasWidth)) {
-        newStep = Math.round(p.map(p.mouseX, 0, canvasWidth, 0, maxStep));
-
-        if (newStep != step) {
+      if (props.value) {
+        let newStep = props.value;
+        if (step != newStep && hasPixelData) {
           step = newStep;
           p.redraw();
         }
