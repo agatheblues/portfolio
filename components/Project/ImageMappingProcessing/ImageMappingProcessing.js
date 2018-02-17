@@ -37,7 +37,7 @@ const ImageMappingProcessing = createReactClass({
 
   handleResize() {
     this.setState({
-      width: this.canvasNode.clientWidth,
+      width: (0.8 * window.innerHeight < this.canvasNode.clientWidth) ? window.innerHeight / 2 : this.canvasNode.clientWidth,
     });
   },
 

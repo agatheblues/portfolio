@@ -21,7 +21,10 @@
 
 .range-container {
   width: 100%;
-  margin: $gutter * 2 0 $gutter * 2 0;
+  margin: $gutter * 2 auto $gutter * 2 auto;
   text-align: center;
-  display: inline-block;
+}
+
+.range-container--600 {
+  width: 600px;
 }

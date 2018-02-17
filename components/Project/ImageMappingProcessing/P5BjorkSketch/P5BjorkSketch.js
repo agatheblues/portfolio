@@ -71,6 +71,7 @@ const P5BjorkSketch = createReactClass({
           handleSlider={this.handleValue}
           defaultValue={this.props.defaultValue}
           step={this.props.step}
+          width={this.props.width}
         />
       </div>
     );
