@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {debounce} from '../../../Utils/Utils.js';
+import {debounce, mapValue} from '../../../Utils/Utils.js';
 import P5Wrapper from 'react-p5-wrapper';
 import {Slider} from '../../../Slider/Slider.js';
 import axios from 'axios';
@@ -68,7 +68,7 @@ const P5BjorkSketch = createReactClass({
         <Slider
           min={this.props.min}
           max={this.props.max}
-          handleSlider={debounce(this.handleValue, 100)}
+          handleSlider={this.handleValue}
           defaultValue={this.props.defaultValue}
           step={this.props.step}
         />
@@ -98,7 +98,7 @@ const P5BjorkSketch = createReactClass({
       p.ellipse(canvasWidth/2, canvasWidth/2, r1, r1);
 
       r1 = (r1 + 0.5 > 50) ? 0 : r1 + 0.5;
-      alpha = p.map(r1, 0, 50, 255, 0);
+      alpha = mapValue(r1, 0, 50, 255, 0);
     };
   },
 
@@ -111,7 +111,6 @@ const P5BjorkSketch = createReactClass({
     let canvasWidth = 600;
     let pixelData = [];
     let hasPixelData = false;
-    let drawingIndex = 0;
 
     // p.preload = function () {
     //   img = p.loadImage('components/Project/ImageMappingProcessing/data/debut.jpg');
@@ -154,36 +153,29 @@ const P5BjorkSketch = createReactClass({
         setTimeout(() => p.redraw(), 100);
       }
 
-      let newStep = p.map(props.value, maxStep, minStep, minStep, maxStep);
+      let newStep = mapValue(props.value, maxStep, minStep, minStep, maxStep);
       if (step != newStep && hasPixelData) {
         step = newStep;
-        drawingIndex = 0;
         setTimeout(() => p.redraw(), 100);
       }
     };
 
     p.draw = function () {
-      if (drawingIndex == 0) {
-        console.log('draw bg');
-        p.background(p.color('#f4efe4'));
-      }
+      p.background(p.color('#f4efe4'));
 
-      if (hasPixelData && (drawingIndex < picWidth - step)) {
+      if (hasPixelData) {
         for (let x = 0; x < picWidth; x += step) {
-          for (let y = drawingIndex; y < drawingIndex + step; y += step) {
+          for (let y = 0; y < picWidth; y += step) {
             let pixel = pixelData[x + y * picWidth];
 
             p.push();
-            p.translate(p.map(x, 0, picWidth, 0, canvasWidth), p.map(y, 0, picWidth, 0, canvasWidth));
+            p.translate(mapValue(x, 0, picWidth, 0, canvasWidth), mapValue(y, 0, picWidth, 0, canvasWidth));
             p.rotate(pixel[3]);
             p.stroke(pixel[0], pixel[1], pixel[2]);
             p.line(- step, - step, step, step);
             p.pop();
           }
         }
-
-        drawingIndex = drawingIndex + step;
-        setTimeout(() => p.redraw(), 100);
       }
     };
   },
@@ -207,7 +199,6 @@ const P5BjorkSketch = createReactClass({
       p.createCanvas(canvasWidth, canvasWidth);
       p.noLoop();
       p.noStroke();
-      p.pixelDensity(3);
 
 
       // TO GENERATE PIXELDATA ARRAY ON RUNTIME :
@@ -228,24 +219,22 @@ const P5BjorkSketch = createReactClass({
     };
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-      if (props.width) {
+      if (props.width && (props.width != canvasWidth)) {
         canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
-        p.redraw();
+        setTimeout(() => p.redraw(), 100);
       }
 
-      if (props.data) {
+      if (props.data && !hasPixelData) {
         pixelData = props.data;
         hasPixelData = true;
-        p.redraw();
+        setTimeout(() => p.redraw(), 100);
       }
 
-      if (props.value) {
-        let newStep = p.map(props.value, maxStep, minStep, minStep, maxStep);
-        if (step != newStep && hasPixelData) {
-          step = newStep;
-          p.redraw();
-        }
+      let newStep = mapValue(props.value, maxStep, minStep, minStep, maxStep);
+      if (step != newStep && hasPixelData) {
+        step = newStep;
+        setTimeout(() => p.redraw(), 100);
       }
     };
 
@@ -254,7 +243,7 @@ const P5BjorkSketch = createReactClass({
 
       p.background(p.color('#001274'));
 
-      let pixWidth = Math.round(p.map(canvasWidth, 0, 600, 0, step/2));
+      let pixWidth = Math.round(mapValue(canvasWidth, 0, 600, 0, step/2));
 
       if (hasPixelData) {
         for (let x = 0; x < picWidth; x += step) {
@@ -262,21 +251,21 @@ const P5BjorkSketch = createReactClass({
             let pixel = pixelData[x + y * picWidth];
 
             p.push();
-            p.translate(p.map(x, 0, picWidth, 0, canvasWidth), p.map(y, 0, picWidth, 0, canvasWidth));
+            p.translate(mapValue(x, 0, picWidth, 0, canvasWidth), mapValue(y, 0, picWidth, 0, canvasWidth));
 
             // Red
             p.fill(pixel[0], 0, 0);
-            let redRadius =  p.map(pixel[0], 0, 255, 0, pixWidth);
+            let redRadius =  mapValue(pixel[0], 0, 255, 0, pixWidth);
             p.ellipse(0, 0, redRadius, redRadius);
 
             // Blue
             p.fill(0, 0, pixel[2]);
-            let blueRadius =  p.map(pixel[2], 0, 255, 0, pixWidth);
+            let blueRadius =  mapValue(pixel[2], 0, 255, 0, pixWidth);
             p.ellipse(- step/4, step/2, blueRadius, blueRadius);
 
             // Green
             p.fill(0, pixel[1], 0);
-            let greenRadius =  p.map(pixel[1], 0, 255, 0, pixWidth);
+            let greenRadius =  mapValue(pixel[1], 0, 255, 0, pixWidth);
             p.ellipse(step/4, step/2, greenRadius, greenRadius);
             p.pop();
 
@@ -301,30 +290,28 @@ const P5BjorkSketch = createReactClass({
     };
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-      if (props.width) {
+      if (props.width && (props.width != canvasWidth)) {
         canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
-        p.redraw();
+        setTimeout(() => p.redraw(), 100);
       }
 
-      if (props.data) {
+      if (props.data && !hasPixelData) {
         pixelData = props.data;
         hasPixelData = true;
-        p.redraw();
+        setTimeout(() => p.redraw(), 100);
       }
 
-      if (props.value) {
-        let newStep = props.value;
-        if (step != newStep && hasPixelData) {
-          step = newStep;
-          p.redraw();
-        }
+      let newStep = props.value;
+      if (step != newStep && hasPixelData) {
+        step = newStep;
+        setTimeout(() => p.redraw(), 100);
       }
     };
 
     p.draw = function () {
       p.background(p.color('#c7203a'));
-      let pixWidth = Math.round(p.map(canvasWidth, 0, 600, 0, 5));
+      let pixWidth = Math.round(mapValue(canvasWidth, 0, 600, 0, 5));
 
       if (hasPixelData) {
 
@@ -333,7 +320,7 @@ const P5BjorkSketch = createReactClass({
             let pixel = pixelData[y + x * picWidth / 5];
 
             p.fill(p.color('#' + pixel[step]));
-            p.rect(p.map(x * 5, 0, picWidth, 0, canvasWidth), p.map(y * 5, 0, picWidth, 0, canvasWidth), pixWidth, pixWidth);
+            p.rect(mapValue(x * 5, 0, picWidth, 0, canvasWidth), mapValue(y * 5, 0, picWidth, 0, canvasWidth), pixWidth, pixWidth);
           }
         }
 

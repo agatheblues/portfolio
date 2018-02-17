@@ -12,3 +12,8 @@ export function debounce(func, wait, immediate) {
     if (callNow) func.apply(context, args);
   };
 };
+
+
+export function mapValue(value, minValue, maxValue, minRange, maxRange) {
+  return (value - minValue) * (maxRange - minRange) / (maxValue - minValue) + minRange;
+}
