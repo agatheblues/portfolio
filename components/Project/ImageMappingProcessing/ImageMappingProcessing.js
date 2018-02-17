@@ -42,7 +42,6 @@ const ImageMappingProcessing = createReactClass({
   },
 
   render() {
-    console.log('IM RENDERING!!!');
 
     return (
       <div>

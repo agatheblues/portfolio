@@ -45,7 +45,11 @@
 }
 
 .section-container--half {
-  height: 50%;
+  height: 100%;
+
+  @media screen and (min-width: $break-md) {
+    height: 50%;
+  }
 }
 
 .thanks-content {
