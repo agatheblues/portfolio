@@ -103,7 +103,7 @@ const ImageMappingProcessing = createReactClass({
                   <h2>Debut</h2>
                 </div>
                 { this.renderP5Wrapper(this.sketchBjorkDebut, this.state.debutData, this.state.debutValue) }
-                <Slider min={4} max={40} handleSlider={this.handleDebutSlider} defaultValue={4}/>
+                <Slider min={4} max={40} handleSlider={debounce(this.handleDebutSlider,200)} defaultValue={4} step={4}/>
               </div>
             </section>
           </div>
@@ -117,7 +117,7 @@ const ImageMappingProcessing = createReactClass({
                   <h2>Post</h2>
                 </div>
                 { this.renderP5Wrapper(this.sketchBjorkPost, this.state.postData, this.state.postValue) }
-                <Slider min={2} max={40} handleSlider={this.handlePostSlider} defaultValue={2}/>
+                <Slider min={2} max={40} handleSlider={debounce(this.handlePostSlider, 200)} defaultValue={2} step={2}/>
               </div>
             </section>
           </div>
@@ -131,7 +131,7 @@ const ImageMappingProcessing = createReactClass({
                   <h2>Homogenic</h2>
                 </div>
                 { this.renderP5Wrapper(this.sketchBjorkHomogenic, this.state.homogenicData, this.state.homogenicValue) }
-                <Slider min={0} max={9} handleSlider={this.handleHomogenicSlider} defaultValue={0}/>
+                <Slider min={0} max={9} handleSlider={debounce(this.handleHomogenicSlider, 200)} defaultValue={0}/>
               </div>
             </section>
           </div>
