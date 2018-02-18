@@ -43,7 +43,7 @@ h1 {
   text-align: center;
   font-family: Lora;
   font-style: italic;
-  font-size: 36px;
+  font-size: 24px;
   margin: 0;
 
 
@@ -75,6 +75,11 @@ h3 {
 
 p {
   margin: 0;
+  font-size: 14px;
+
+  @media screen and (min-width: $break-md) {
+    font-size: 100%;
+  }
 }
 
 hr {

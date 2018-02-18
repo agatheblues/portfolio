@@ -312,8 +312,8 @@ const P5BjorkSketch = createReactClass({
 
     p.draw = function () {
       p.background(p.color('#c7203a'));
-      let pixWidth = Math.round(mapValue(canvasWidth, 0, 600, 0, 5));
-
+      let pixWidth = Math.round(mapValue(canvasWidth, 300, 600, 2, 5));
+      console.log(pixWidth);
       if (hasPixelData) {
 
         for (let x = 0; x < picWidth / 5; x++) {
