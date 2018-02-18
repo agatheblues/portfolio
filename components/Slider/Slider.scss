@@ -3,11 +3,9 @@
 .input-range {
   -webkit-appearance: none;
   width: 100%;
-  border-radius: 8px;
-  height: 1px;
-  border: 1px solid #BFBFBF;
-  background-color: #fff;
   outline: 0;
+  height: 1px;
+  background: #BFBFBF;
 }
 
 .input-range::-webkit-slider-thumb {
@@ -17,6 +15,32 @@
   height: 15px;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.input-range::-moz-range-thumb {
+  background-color: $gold-highlight;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.input-range::-ms-thumb {
+  background-color: $gold-highlight;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.input-range::-moz-range-track {
+  height: 1px;
+  background: #BFBFBF;
+}
+
+.input-range::-ms-track {
+  height: 1px;
+  background: #BFBFBF;
 }
 
 .range-container {
