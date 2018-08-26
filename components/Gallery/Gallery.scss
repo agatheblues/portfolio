@@ -44,11 +44,21 @@
   position: relative;
   overflow: hidden;
   margin-bottom: 6*$gutter;
+
+  @media screen and (min-width: $break-lg) {
+    margin-left: calc(50% - 49vw);
+    margin-right: calc(50% - 49vw);
+  }
 }
 
 .gallery-thumbnail {
   max-width: 100%;
   height: auto;
+  max-height: 90vh;
+
+  @media screen and (min-width: $break-lg) {
+    max-width: 80%;
+  }
 }
 
 .gallery-title {
