@@ -43,7 +43,7 @@ const Slider = createReactClass({
     }
   },
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.width && (nextProps.width != this.props.width)) {
       if (nextProps.width >= 600) {
         this.setState({
