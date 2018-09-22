@@ -42,8 +42,7 @@ const MainWrapper = createReactClass({
           });
         })
         .catch((error) => {
-          const response = error.response;
-          console.log(response);
+          console.log(error);
         });
   },
   componentWillUnmount: function() {
@@ -100,5 +99,5 @@ export default MainWrapper;
 
 ReactDOM.render(
   <MainWrapper />,
-  document.querySelector('.container')
+  document.querySelector('#app')
 );
