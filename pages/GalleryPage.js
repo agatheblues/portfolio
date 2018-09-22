@@ -40,7 +40,7 @@ const GalleryPage = createReactClass({
   },
   render() {
     return(
-      <div>
+      <div className='container'>
         <Header menuItems={this.props.menuItems}/>
         <div className="gallery-title-container">
           <h1 className="gallery-title">{this.props.cardItem.title}</h1>

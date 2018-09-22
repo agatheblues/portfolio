@@ -11,7 +11,7 @@ const PhotographyPage = createReactClass({
   },
   render() {
     return(
-      <div>
+      <div className='container'>
         <Header menuItems={this.props.menuItems}/>
         <Card origin='/photography' cardItems={this.props.cardItems} />
       </div>

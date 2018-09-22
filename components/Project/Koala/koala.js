@@ -14,7 +14,7 @@ const Koala = createReactClass({
   },
   render() {
     return (
-      <div>
+      <div  className='container'>
         <h2>{this.props.projectData.title}</h2>
         <div id='dots' className='koala-container'></div>
         <button id="recommencer" className="button">Do it again!</button>

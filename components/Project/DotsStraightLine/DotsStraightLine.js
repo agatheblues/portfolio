@@ -176,7 +176,7 @@ const DotsStraightLine = createReactClass({
   },
   render() {
     return (
-      <div>
+      <div  className='container'>
         <h2>{this.props.projectData.title}</h2>
 
         <div id='chart' className='dots-straightline-container'>

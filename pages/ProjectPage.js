@@ -11,7 +11,7 @@ const ProjectPage = createReactClass({
   },
   render() {
     return(
-      <div>
+      <div className='container'>
         <Header menuItems={this.props.menuItems}/>
         <Card origin='/projects' cardItems={this.props.cardItems} />
       </div>

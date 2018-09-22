@@ -13,7 +13,7 @@ const AboutPage = createReactClass({
     var { aboutContent } = this.props;
 
     return(
-      <div>
+      <div className='container'>
         <Header menuItems={this.props.menuItems}/>
         <div className='row'>
           <ColumnContent
