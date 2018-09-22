@@ -1,13 +1,15 @@
 require('../Koala/Koala.scss');
 import PropTypes from 'prop-types';
 import React from 'react';
+import {Header} from '../../Header/Header.js';
 import * as d3 from 'd3';
 var createReactClass = require('create-react-class');
 
 
 const Koala = createReactClass({
   propTypes: {
-    projectData: PropTypes.object.isRequired
+    projectData: PropTypes.object.isRequired,
+    menuItems: PropTypes.array.isRequired
   },
   componentDidMount() {
     main();
@@ -15,6 +17,7 @@ const Koala = createReactClass({
   render() {
     return (
       <div  className='container'>
+        <Header menuItems={this.props.menuItems}/>
         <h2>{this.props.projectData.title}</h2>
         <div id='dots' className='koala-container'></div>
         <button id="recommencer" className="button">Do it again!</button>

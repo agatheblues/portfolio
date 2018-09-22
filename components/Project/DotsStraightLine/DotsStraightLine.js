@@ -1,6 +1,7 @@
 require('../DotsStraightLine/DotsStraightLine.scss');
 import {Slider} from '../../Slider/Slider.js';
 import PropTypes from 'prop-types';
+import {Header} from '../../Header/Header.js';
 import React from 'react';
 import * as d3 from 'd3';
 var createReactClass = require('create-react-class');
@@ -15,7 +16,8 @@ const DotsStraightLine = createReactClass({
     };
   },
   propTypes: {
-    projectData: PropTypes.object.isRequired
+    projectData: PropTypes.object.isRequired,
+    menuItems: PropTypes.array.isRequired
   },
   update(w) {
     var svg = d3.select('svg');
@@ -177,6 +179,7 @@ const DotsStraightLine = createReactClass({
   render() {
     return (
       <div  className='container'>
+        <Header menuItems={this.props.menuItems}/>
         <h2>{this.props.projectData.title}</h2>
 
         <div id='chart' className='dots-straightline-container'>
