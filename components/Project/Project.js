@@ -1,10 +1,11 @@
 require('../Project/Project.scss');
+import React from 'react';
+import PropTypes from 'prop-types';
 import {Koala} from './Koala/Koala.js';
 import {DotsStraightLine} from './DotsStraightLine/DotsStraightLine.js';
 import {ImageMappingProcessing} from './ImageMappingProcessing/ImageMappingProcessing.js';
-import PropTypes from 'prop-types';
 import {Header} from '../Header/Header.js';
-import React from 'react';
+import {Agator9999} from './Agator9999/Agator9999.js';
 var createReactClass = require('create-react-class');
 
 const Project = createReactClass({
@@ -23,6 +24,8 @@ const Project = createReactClass({
     case 'project-bjork':
       return(<ImageMappingProcessing projectData={this.props.cardItem}/>);
       break;
+    case 'project-agator9999':
+      return(<Agator9999 projectData={this.props.cardItem}/>);
     default:
       return false;
     };
@@ -30,7 +33,9 @@ const Project = createReactClass({
   render() {
     return(
       <div>
-        <Header menuItems={this.props.menuItems}/>
+        <div className='container'>
+          <Header menuItems={this.props.menuItems}/>
+        </div>
         {
           this.renderProject()
         }
