@@ -23,6 +23,7 @@ body {
 }
 
 .container {
+
   width: 100%;
 
   @media screen and (min-width: $break-sm) {
@@ -36,6 +37,9 @@ body {
   }
   @media screen and (min-width: $break-xl) {
     width: 60%;
+  }
+  @media screen and (min-width: $break-xxl) {
+    width: 50%;
   }
 }
 
@@ -61,6 +65,10 @@ h2 {
   text-align: left;
 }
 
+h2.inverted {
+  color: $navy-blue;
+}
+
 h3 {
   font-size: 12px;
   text-transform: uppercase;
@@ -80,6 +88,10 @@ p {
   @media screen and (min-width: $break-md) {
     font-size: 100%;
   }
+}
+
+.italic {
+  font-style: italic;
 }
 
 hr {
@@ -115,10 +127,21 @@ ul {
   margin-right: auto;
 }
 
+.hline-seperator--inverted {
+  border-top: $navy-blue solid 1px;
+}
+
+
 .hline-top {
   border-top: $gold-highlight solid 2px;
   width: 100%;
   margin-bottom: $gutter;
+}
+
+.note {
+  font-size: 14px;
+  color: $white;
+  font-style: italic;
 }
 
 
@@ -201,4 +224,128 @@ ul {
 
 .heart-icon {
   color: #c7203a;
+}
+
+.section-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.section-wrapper {
+  margin: 5vh;
+
+  @media screen and (min-width: $break-md) {
+    margin:10vh;
+  }
+  @media screen and (min-width: $break-xl) {
+    margin: 15vh;
+  }
+}
+
+.section-wrapper img {
+  width: 100%;
+}
+
+.section-container--top {
+  z-index: 1
+}
+
+.section-container--half {
+  height: 100%;
+
+  @media screen and (min-width: $break-md) {
+    height: 50%;
+  }
+}
+
+.section-image {
+  margin-bottom: 20px;
+}
+
+.thanks-content {
+    font-size: 14px;
+    margin-bottom: $gutter/2;
+}
+
+.thanks-container {
+  padding: $gutter 0 $gutter 0;
+}
+
+.image-full-centered {
+  position: relative;
+  margin: auto;
+  display: block;
+  height: auto;
+  width: 100%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-description {
+  font-size: 16px;
+  margin-bottom: $gutter;
+  text-align: left;
+}
+
+
+/*** BUTTONS ***/
+
+@import 'variable';
+
+
+.btn {
+  overflow: hidden;
+
+  padding: 12px 12px;
+
+  cursor: pointer;
+  user-select: none;
+  transition: all 150ms linear;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+
+  color: $white;
+  background: $gold-highlight;
+  border: 0 none;
+
+  line-height: 1.3;
+
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;
+
+  font-family: inherit;
+  font-size: inherit;
+
+  border-radius: 0;
+  border: solid 1px $gold-highlight;
+
+  &:hover {
+    transition: all 150ms linear;
+    color: $gold-highlight;
+    background: $navy-blue;
+  }
+
+
+  &:active {
+    transition: all 150ms linear;
+    opacity: .75;
+  }
+
+  &:focus {
+    outline: none;
+    color: $white;
+  }
+}
+
+
+.button-list .btn {
+  margin: 0 20px 20px 0;
 }
