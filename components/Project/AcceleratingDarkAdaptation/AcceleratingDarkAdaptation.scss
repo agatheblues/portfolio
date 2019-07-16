@@ -1,0 +1,14 @@
+@import "variable";
+
+
+.section--black {
+  background-color: #000;
+}
+
+.section--gold {
+  background-color: $gold-highlight;
+}
+
+.first-paragraph {
+  margin-top: 30px;
+}
