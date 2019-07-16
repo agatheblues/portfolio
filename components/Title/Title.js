@@ -1,7 +1,7 @@
 require('../Title/Title.scss');
 import PropTypes from 'prop-types';
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 var createReactClass = require('create-react-class');
 
 
@@ -41,10 +41,10 @@ const Title = createReactClass({
     const length = this.props.authors.length;
 
     return this.props.authors.map((author, index) => {
-      if (index != length-1) {
+      if (index != length - 1) {
         if (author.link) {
           return (
-            <p key={index}>&nbsp;&nbsp;<a href={author.link}>{author.name}</a>,</p>
+            <p key={index}>&nbsp;&nbsp;<a className='link' href={author.link}>{author.name}</a>,</p>
           );
         } else {
           return (
@@ -65,7 +65,7 @@ const Title = createReactClass({
     });
   },
   render() {
-    return(
+    return (
       <div className='title-container'>
         <div className='container container--vertical-centered'>
           {this.addNewLine(this.props.title)}
@@ -75,7 +75,7 @@ const Title = createReactClass({
           </div>
           <div className='author-container'>
             <p>By</p>
-            { this.renderAuthors() }
+            {this.renderAuthors()}
             <span>/</span>
             <p>{this.props.date}</p>
           </div>
@@ -85,4 +85,4 @@ const Title = createReactClass({
   }
 });
 
-export {Title};
+export { Title };
