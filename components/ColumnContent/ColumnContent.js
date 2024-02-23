@@ -2,25 +2,25 @@ require('../ColumnContent/ColumnContent.scss');
 import PropTypes from 'prop-types';
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 
 const ColumnContent = createReactClass({
   propTypes: {
     title: PropTypes.string.isRequired,
     description: PropTypes.array.isRequired,
-    links: PropTypes.object.isRequired
+    links: PropTypes.object.isRequired,
   },
   addSpans(s) {
-    let spans = s.match(/\{\{(.*?)\}\}/g);
+    const spans = s.match(/\{\{(.*?)\}\}/g);
 
     if (!spans) {
       return <p>{s}</p>;
     } else {
-      let textParts = s.split(/\{\{(.*?)\}\}/g);
-      let indexes = [];
+      const textParts = s.split(/\{\{(.*?)\}\}/g);
+      const indexes = [];
 
-      spans.map(span => {
+      spans.map((span) => {
         // Remove curly brackets
         const spanCleaned = span.substr(2, span.length - 4);
 
@@ -30,9 +30,9 @@ const ColumnContent = createReactClass({
 
       return <p>{
         textParts.map((textPart, index) => {
-          let link = this.props.links[textPart];
+          const link = this.props.links[textPart];
 
-          if  (link && indexes.indexOf(index) != -1) {
+          if (link && indexes.indexOf(index) != -1) {
             if (link.isExternal) {
               return <a className='highlight' key={index} href={link.url}>{textPart}</a>;
             } else {
@@ -45,7 +45,7 @@ const ColumnContent = createReactClass({
     }
   },
   render() {
-    return(
+    return (
       <div className='col-xs-12 col-sm-12 col-md-6 col-lg-6'>
         <div className='column-title'>
           <h2>{this.props.title}</h2>
@@ -63,7 +63,7 @@ const ColumnContent = createReactClass({
         }
       </div>
     );
-  }
+  },
 });
 
 export {ColumnContent};

@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import {Gallery} from '../components/Gallery/Gallery.js';
 import {Header} from '../components/Header/Header.js';
 import {Footer} from '../components/Footer/Footer.js';
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 
 const GalleryPage = createReactClass({
   propTypes: {
     cardItem: PropTypes.object.isRequired,
-    menuItems: PropTypes.array.isRequired
+    menuItems: PropTypes.array.isRequired,
   },
   getInitialState: function() {
     return {
-      galleryContent: []
+      galleryContent: [],
     };
   },
   componentDidMount: function() {
@@ -26,7 +26,7 @@ const GalleryPage = createReactClass({
         .get(url)
         .then(function(result) {
           _this.setState({
-            galleryContent: result.data.galleryContent
+            galleryContent: result.data.galleryContent,
           });
         })
         .catch((error) => {
@@ -39,7 +39,7 @@ const GalleryPage = createReactClass({
     // this.serverRequest.abort();
   },
   render() {
-    return(
+    return (
       <div className='container'>
         <Header menuItems={this.props.menuItems}/>
         <div className="gallery-title-container">
@@ -62,7 +62,7 @@ const GalleryPage = createReactClass({
         <Footer />
       </div>
     );
-  }
+  },
 });
 
 export {GalleryPage};

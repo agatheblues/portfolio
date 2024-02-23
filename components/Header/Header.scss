@@ -11,7 +11,7 @@
 }
 
 .header-items {
-  padding: $gutter / 4;
+  padding: calc($gutter / 4);
 }
 
 .header-items .active {

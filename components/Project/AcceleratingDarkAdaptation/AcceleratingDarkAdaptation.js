@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Title } from '../../Title/Title.js';
-import { Methodology } from '../../Methodology/Methodology.js';
-import { Header } from '../../Header/Header.js';
+import {Title} from '../../Title/Title.js';
+import {Methodology} from '../../Methodology/Methodology.js';
+import {Header} from '../../Header/Header.js';
 require('../AcceleratingDarkAdaptation/AcceleratingDarkAdaptation.scss');
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 
 const AcceleratingDarkAdaptation = createReactClass({
   propTypes: {
     projectData: PropTypes.object.isRequired,
-    menuItems: PropTypes.array.isRequired
+    menuItems: PropTypes.array.isRequired,
   },
 
+  /* eslint-disable max-len */
   render() {
-
     return (
 
       <div>
@@ -103,7 +103,8 @@ const AcceleratingDarkAdaptation = createReactClass({
         </div>
       </div>
     );
-  }
+  },
+  /* eslint-enable max-len */
 });
 
-export { AcceleratingDarkAdaptation };
+export {AcceleratingDarkAdaptation};

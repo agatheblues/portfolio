@@ -35,8 +35,8 @@
 
 .gallery-metadata-item {
   display: inline-block;
-  padding-left: $gutter/2;
-  padding-right: $gutter/2;
+  padding-left: calc($gutter / 2);
+  padding-right: calc($gutter / 2);
   color: $gold-highlight;
 }
 

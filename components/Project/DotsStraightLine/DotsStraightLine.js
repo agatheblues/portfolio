@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Header} from '../../Header/Header.js';
 import React from 'react';
 import * as d3 from 'd3';
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 
 const DotsStraightLine = createReactClass({
@@ -12,61 +12,57 @@ const DotsStraightLine = createReactClass({
     return {
       dataset: new Array(25),
       width: 0,
-      nbLines: 15
+      nbLines: 15,
     };
   },
   propTypes: {
     projectData: PropTypes.object.isRequired,
-    menuItems: PropTypes.array.isRequired
+    menuItems: PropTypes.array.isRequired,
   },
   update(w) {
-    var svg = d3.select('svg');
-    //Graph of the dots moving in straight lines
-    var graphContainer = d3.select('#graphContainer');
+    const mainLineContainer = d3.select('#mainLineContainer');
 
-    var mainLineContainer = d3.select('#mainLineContainer');
+    const mainCircleContainer = d3.select('#mainCircleContainer');
 
-    var mainCircleContainer = d3.select('#mainCircleContainer');
-
-    var padding = 10;
-    var transitionDuration = 5000;
+    const padding = 10;
+    const transitionDuration = 5000;
 
     // Lines containers
-    var lineContainer = mainLineContainer.selectAll('g.lineContainer')
+    const lineContainer = mainLineContainer.selectAll('g.lineContainer')
       .data(this.state.dataset);
 
-    var length = this.state.dataset.length;
+    const length = this.state.dataset.length;
 
-    //New lines
+    // New lines
     lineContainer.enter()
       .append('g')
-      .attr('class','lineContainer')
-      .attr('transform',function(d,i){
-        var angleDeg = (360*i)/(2*length); //Parent container gets rotated; but content should not. Counter rotate here.
-        var angleRad = angleDeg * (Math.PI / 180);
-        var transX = w/2 * (1 - Math.cos(angleRad));
-        var transY = -w/2 * Math.sin(angleRad);
+      .attr('class', 'lineContainer')
+      .attr('transform', function(d, i) {
+        const angleDeg = (360*i)/(2*length); // Parent container gets rotated; but content should not. Counter rotate here.
+        const angleRad = angleDeg * (Math.PI / 180);
+        const transX = w/2 * (1 - Math.cos(angleRad));
+        const transY = -w/2 * Math.sin(angleRad);
         return 'translate('+ transX +','+ (w/2+transY) +') rotate('+ angleDeg +')';
       })
-      .append('line') //Line creation
-      .attr('y1',0)
+      .append('line') // Line creation
+      .attr('y1', 0)
       .attr('x1', padding)
-      .attr('y2',0)
+      .attr('y2', 0)
       .attr('x2', w-padding)
-      .attr('class','straightLines');
+      .attr('class', 'straightLines');
 
-    //Moves Update + Enter
+    // Moves Update + Enter
     lineContainer.transition()
       .duration(500)
-      .attr('transform',function(d,i){
-        var angleDeg = (360*i)/(2*length); //Parent container gets rotated; but content should not. Counter rotate here.
-        var angleRad = angleDeg * (Math.PI / 180);
-        var transX = w/2 * (1 - Math.cos(angleRad));
-        var transY = -w/2 * Math.sin(angleRad);
+      .attr('transform', function(d, i) {
+        const angleDeg = (360*i)/(2*length); // Parent container gets rotated; but content should not. Counter rotate here.
+        const angleRad = angleDeg * (Math.PI / 180);
+        const transX = w/2 * (1 - Math.cos(angleRad));
+        const transY = -w/2 * Math.sin(angleRad);
         return 'translate('+ transX +','+ (w/2+transY) +') rotate('+ angleDeg +')';
       });
 
-    //Remove what's not in update or enter
+    // Remove what's not in update or enter
     lineContainer.exit()
       .remove();
 
@@ -77,50 +73,53 @@ const DotsStraightLine = createReactClass({
       .attr('class', 'centralCircle');
 
     // Circles containers
-    var circleContainer = mainCircleContainer.selectAll('g.circleContainer')
+    const circleContainer = mainCircleContainer.selectAll('g.circleContainer')
       .data(this.state.dataset);
 
-    //New circles
+    // New circles
     circleContainer.enter()
       .append('g')
-      .attr('class','circleContainer')
-      .attr('transform',function(d,i){
-        var angleDeg = (360*i)/(2*length); //Parent container gets rotated; but content should not. Counter rotate here.
-        var angleRad = angleDeg * (Math.PI / 180);
-        var transX = w/2 * (1 - Math.cos(angleRad));
-        var transY = -w/2 * Math.sin(angleRad);
-        return 'translate('+ transX +','+ (w/2+transY) +') rotate('+ angleDeg +')';}
+      .attr('class', 'circleContainer')
+      .attr('transform', function(d, i) {
+        const angleDeg = (360*i)/(2*length); // Parent container gets rotated; but content should not. Counter rotate here.
+        const angleRad = angleDeg * (Math.PI / 180);
+        const transX = w/2 * (1 - Math.cos(angleRad));
+        const transY = -w/2 * Math.sin(angleRad);
+        return 'translate('+ transX +','+ (w/2+transY) +') rotate('+ angleDeg +')';
+      },
       )
-      .append('circle')     // Circle creation
+      .append('circle') // Circle creation
       .attr('r', 5)
       .attr('cx', padding)
       .attr('cy', 0)
       .attr('class', 'straightCircles')
-      .attr('id', function(d, i){return 'straightCircles'+i;});
+      .attr('id', function(d, i) {
+        return 'straightCircles'+i;
+      });
 
-    //Moves Update + Enter
+    // Moves Update + Enter
     circleContainer.transition()
       .duration(500)
-      .attr('transform',function(d,i){
-        var angleDeg = (360*i)/(2*length); //Parent container gets rotated; but content should not. Counter rotate here.
-        var angleRad = angleDeg * (Math.PI / 180);
-        var transX = w/2 * (1 - Math.cos(angleRad));
-        var transY = -w/2 * Math.sin(angleRad);
-        return 'translate('+ transX +','+ (w/2+transY) +') rotate('+ angleDeg +')';}
+      .attr('transform', function(d, i) {
+        const angleDeg = (360*i)/(2*length); // Parent container gets rotated; but content should not. Counter rotate here.
+        const angleRad = angleDeg * (Math.PI / 180);
+        const transX = w/2 * (1 - Math.cos(angleRad));
+        const transY = -w/2 * Math.sin(angleRad);
+        return 'translate('+ transX +','+ (w/2+transY) +') rotate('+ angleDeg +')';
+      },
       );
 
-    //Remove what's not in update or enter
+    // Remove what's not in update or enter
     circleContainer.exit()
       .remove();
 
     // Animation
-    var animateCircle = function(selection){
-
+    const animateCircle = function(selection) {
       selection.transition()
         .duration(transitionDuration)
         .ease(d3.easeSinInOut)
         .delay(
-          function(d,i){
+          function(d, i) {
             return i*(transitionDuration/(length));
           })
         .attr('cx', w-padding)
@@ -128,43 +127,37 @@ const DotsStraightLine = createReactClass({
         .duration(transitionDuration)
         .ease(d3.easeSinInOut)
         .attr('cx', padding)
-        .on('end', function(d,i){
-          if (i===0){
+        .on('end', function(d, i) {
+          if (i===0) {
             animateCircle(selection);
           }
         });
     };
 
     animateCircle(d3.selectAll('.circleContainer').select('.straightCircles'));
-
-    function sinInOut(t) {
-      return (1 - Math.cos(Math.PI * t)) / 2;
-    }
   },
   main() {
-
-    var margin = {top: 50, right: 50, bottom: 50, left: 50};
-    var height = window.innerHeight * 0.6;
-    var width = parseInt(d3.select('#chart').style('width')) - margin.left - margin.right;
-    var w = (width>height) ? height : width;
+    const margin = {top: 50, right: 50, bottom: 50, left: 50};
+    const height = window.innerHeight * 0.6;
+    const width = parseInt(d3.select('#chart').style('width')) - margin.left - margin.right;
+    const w = (width>height) ? height : width;
     this.setState({width: w});
 
-    var svg = d3.select('#chart').append('svg')
+    const svg = d3.select('#chart').append('svg')
       .attr('width', w)
       .attr('height', w);
 
-    //Graph of the dots moving in straight lines
-    var graphContainer = svg.append('g')
+    // Graph of the dots moving in straight lines
+    const graphContainer = svg.append('g')
       .attr('id', 'graphContainer');
 
-    var mainLineContainer = graphContainer.append('g')
-      .attr('id','mainLineContainer');
+    graphContainer.append('g')
+      .attr('id', 'mainLineContainer');
 
-    var mainCircleContainer = graphContainer.append('g')
-      .attr('id','mainCircleContainer');
+    graphContainer.append('g')
+      .attr('id', 'mainCircleContainer');
 
     this.update(w);
-
   },
   componentDidMount() {
     this.main();
@@ -172,13 +165,13 @@ const DotsStraightLine = createReactClass({
   handleSlider: function(value) {
     this.setState({
       dataset: new Array(parseInt(value)),
-      nbLines: value
+      nbLines: value,
     });
     this.update(this.state.width);
   },
   render() {
     return (
-      <div  className='container'>
+      <div className='container'>
         <Header menuItems={this.props.menuItems}/>
         <h2>{this.props.projectData.title}</h2>
 
@@ -192,7 +185,7 @@ const DotsStraightLine = createReactClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 export {DotsStraightLine};

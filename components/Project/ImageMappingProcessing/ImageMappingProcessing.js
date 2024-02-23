@@ -1,31 +1,29 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import P5Wrapper from 'react-p5-wrapper';
 import {Title} from '../../Title/Title.js';
 import {debounce} from '../../Utils/Utils.js';
 import {Header} from '../../Header/Header.js';
 import {Methodology} from '../../Methodology/Methodology.js';
 import {P5BjorkSketch} from './P5BjorkSketch/P5BjorkSketch.js';
-import axios from 'axios';
 require('../ImageMappingProcessing/ImageMappingProcessing.scss');
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 
 const ImageMappingProcessing = createReactClass({
   getInitialState: function() {
     return {
-      width: 600
+      width: 600,
     };
   },
 
   propTypes: {
     projectData: PropTypes.object.isRequired,
-    menuItems: PropTypes.array.isRequired
+    menuItems: PropTypes.array.isRequired,
   },
 
   componentDidMount() {
     this.setState({
-      width: this.canvasNode.clientWidth
+      width: this.canvasNode.clientWidth,
     });
 
     window.addEventListener('resize', debounce(this.handleResize, 200));
@@ -43,8 +41,8 @@ const ImageMappingProcessing = createReactClass({
     });
   },
 
+  /* eslint-disable max-len */
   render() {
-
     return (
       <div>
         <div className='section-container section-container--top'>
@@ -138,7 +136,8 @@ const ImageMappingProcessing = createReactClass({
         </div>
       </div>
     );
-  }
+  },
+  /* eslint-enable max-len */
 });
 
 export {ImageMappingProcessing};

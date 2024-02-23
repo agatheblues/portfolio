@@ -1,41 +1,52 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: ['./main.js'],
   output: {
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    clean: true,
+  },
+  devServer: {
+    devMiddleware: {writeToDisk : true},
+    hot: true,
+    static: {
+      directory: path.resolve(__dirname, './static'),
+      publicPath: '/static',
+    },
   },
   module: {
     rules: [
       {
-        test: [/\.js$/],
+        test: /\.(?:js|jsx|mjs|cjs)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015']
-        }
-      },
-      {
-        test: /\.js$/,
-        enforce: 'pre',
-        exclude: [/node_modules/],
-        loader: 'eslint-loader',
-        options: {
-          // eslint options (if necessary)
-        }
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', {targets: 'defaults'}],
+              ['@babel/preset-react', {targets: 'defaults'}],
+            ],
+          },
+        },
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
-      }
-    ]
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader', // Translates CSS into CommonJS.
+          'sass-loader', // Compiles SCSS to CSS.
+        ],
+      },
+    ],
   },
   plugins: [
-    new ExtractTextPlugin('style.css'),
-    new webpack.HotModuleReplacementPlugin()
-  ]
+    new HtmlWebpackPlugin({template: 'index.html'}),
+    // new ESLintPlugin(),
+    new MiniCssExtractPlugin({filename: 'style.css'}),
+  ],
 };
