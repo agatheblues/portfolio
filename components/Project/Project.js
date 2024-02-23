@@ -3,10 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Koala} from './Koala/Koala.js';
 import {DotsStraightLine} from './DotsStraightLine/DotsStraightLine.js';
-import {ImageMappingProcessing} from './ImageMappingProcessing/ImageMappingProcessing.js';
 import {Agator9999} from './Agator9999/Agator9999.js';
 import {AcceleratingDarkAdaptation} from './AcceleratingDarkAdaptation/AcceleratingDarkAdaptation.js';
 const createReactClass = require('create-react-class');
+
+const ImageMappingProcessingLazy = React.lazy(() => import(
+  /* webpackChunkName: "image-processing" */ './ImageMappingProcessing/ImageMappingProcessing.js'),
+);
 
 const Project = createReactClass({
   propTypes: {
@@ -20,7 +23,11 @@ const Project = createReactClass({
       case 'project-dots-straight-line':
         return (<DotsStraightLine projectData={this.props.cardItem} menuItems={this.props.menuItems} />);
       case 'project-bjork':
-        return (<ImageMappingProcessing projectData={this.props.cardItem} menuItems={this.props.menuItems} />);
+        return (
+          <React.Suspense fallback={<div></div>}>
+            <ImageMappingProcessingLazy projectData={this.props.cardItem} menuItems={this.props.menuItems} />
+          </React.Suspense>
+        );
       case 'project-agator9999':
         return (<Agator9999 projectData={this.props.cardItem} menuItems={this.props.menuItems} />);
       case 'project-accelerating-dark-adaptation':
