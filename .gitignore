@@ -44,3 +44,7 @@ static
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Analyze #
+######################
+stats.json
