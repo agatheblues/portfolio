@@ -15,16 +15,9 @@ Assets go in a `static` folder at the root of the project. `static` must contain
   "projects": {
     "projectList": []
   },
-  "photography": {
-    "galleries": []
-  },
   "about": {
     "aboutMe": {
       "title": "Hi there!",
-      "description": []
-    },
-    "contact": {
-      "title": "Grab a coffee?",
       "description": []
     },
     "links": {
