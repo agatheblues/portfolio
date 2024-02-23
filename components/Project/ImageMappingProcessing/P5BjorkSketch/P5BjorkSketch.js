@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {debounce, mapValue} from '../../../Utils/Utils.js';
-import P5Wrapper from 'react-p5-wrapper';
+import {mapValue} from '../../../Utils/Utils.js';
+import {ReactP5Wrapper} from 'react-p5-wrapper';
 import {Slider} from '../../../Slider/Slider.js';
 import axios from 'axios';
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 
 const P5BjorkSketch = createReactClass({
@@ -12,7 +12,7 @@ const P5BjorkSketch = createReactClass({
     return {
       load: false,
       data: [],
-      value: this.props.defaultValue
+      value: this.props.defaultValue,
     };
   },
 
@@ -23,27 +23,25 @@ const P5BjorkSketch = createReactClass({
     min: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
     step: PropTypes.number,
-    defaultValue: PropTypes.number.isRequired
+    defaultValue: PropTypes.number.isRequired,
   },
 
   componentDidMount() {
-
     const _this = this;
     this.serverRequest = axios
       .get(this.props.filePath)
       .then(function(result) {
         _this.setState({
           data: result.data,
-          load: true
+          load: true,
         });
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   },
-
 
   handleValue(value) {
     this.setState({
-      value: value
+      value: value,
     });
   },
 
@@ -51,15 +49,14 @@ const P5BjorkSketch = createReactClass({
     return this.renderP5Wrapper();
   },
 
-
   renderP5Wrapper() {
     if (!this.state.load) {
-      return <P5Wrapper sketch={this.loader} width={this.props.width}/>;
+      return <ReactP5Wrapper sketch={this.loader} width={this.props.width}/>;
     }
 
     return (
       <div>
-        <P5Wrapper
+        <ReactP5Wrapper
           sketch={this[this.props.sketch]}
           width={this.props.width}
           data={this.state.data}
@@ -77,16 +74,16 @@ const P5BjorkSketch = createReactClass({
     );
   },
 
-  loader (p) {
+  loader(p) {
     let canvasWidth = 600;
-    let r1 = 0, alpha = 255;
+    let r1 = 0; let alpha = 255;
 
-    p.setup = function () {
+    p.setup = function() {
       p.createCanvas(canvasWidth, canvasWidth);
       p.noStroke();
     };
 
-    p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+    p.updateWithProps = function(props) {
       if (props.width) {
         canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
@@ -103,11 +100,11 @@ const P5BjorkSketch = createReactClass({
     };
   },
 
-  sketchBjorkDebut (p) {
-    let img;
+  sketchBjorkDebut(p) {
+    // let img;
     const picWidth = 500;
-    let maxStep = 40;
-    let minStep = 4;
+    const maxStep = 40;
+    const minStep = 4;
     let step = 40;
     let canvasWidth = 600;
     let pixelData = [];
@@ -117,7 +114,7 @@ const P5BjorkSketch = createReactClass({
     //   img = p.loadImage('components/Project/ImageMappingProcessing/data/debut.jpg');
     // };
 
-    p.setup = function () {
+    p.setup = function() {
       p.createCanvas(canvasWidth, canvasWidth);
       p.noLoop();
 
@@ -141,7 +138,7 @@ const P5BjorkSketch = createReactClass({
       // console.log('debut', pixelData);
     };
 
-    p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+    p.updateWithProps = function(props) {
       if (props.width && (props.width != canvasWidth)) {
         canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
@@ -154,20 +151,20 @@ const P5BjorkSketch = createReactClass({
         setTimeout(() => p.redraw(), 100);
       }
 
-      let newStep = mapValue(props.value, maxStep, minStep, minStep, maxStep);
+      const newStep = mapValue(props.value, maxStep, minStep, minStep, maxStep);
       if (step != newStep && hasPixelData) {
         step = newStep;
         setTimeout(() => p.redraw(), 100);
       }
     };
 
-    p.draw = function () {
+    p.draw = function() {
       p.background(p.color('#f4efe4'));
 
       if (hasPixelData) {
         for (let x = 0; x < picWidth; x += step) {
           for (let y = 0; y < picWidth; y += step) {
-            let pixel = pixelData[x + y * picWidth];
+            const pixel = pixelData[x + y * picWidth];
 
             p.push();
             p.translate(mapValue(x, 0, picWidth, 0, canvasWidth), mapValue(y, 0, picWidth, 0, canvasWidth));
@@ -181,14 +178,14 @@ const P5BjorkSketch = createReactClass({
     };
   },
 
-  sketchBjorkPost (p) {
-    let img;
+  sketchBjorkPost(p) {
+    // let img;
     const sliderStep = 2;
     const picWidth = 500;
     let canvasWidth = 600;
     let pixelData = [];
-    let maxStep = 40;
-    let minStep = 8;
+    const maxStep = 40;
+    const minStep = 8;
     let step = Math.round(maxStep / sliderStep) * sliderStep;
     let hasPixelData = false;
 
@@ -196,7 +193,7 @@ const P5BjorkSketch = createReactClass({
     //   img = p.loadImage('components/Project/ImageMappingProcessing/data/post.jpg');
     // };
 
-    p.setup = function () {
+    p.setup = function() {
       p.createCanvas(canvasWidth, canvasWidth);
       p.noLoop();
       p.noStroke();
@@ -219,7 +216,7 @@ const P5BjorkSketch = createReactClass({
       // console.log('post', pixelData);
     };
 
-    p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+    p.updateWithProps = function(props) {
       if (props.width && (props.width != canvasWidth)) {
         canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
@@ -232,7 +229,7 @@ const P5BjorkSketch = createReactClass({
         setTimeout(() => p.redraw(), 100);
       }
 
-      let newStep = mapValue(props.value, maxStep, minStep, minStep, maxStep);
+      const newStep = mapValue(props.value, maxStep, minStep, minStep, maxStep);
       if (step != newStep && hasPixelData) {
         step = newStep;
         setTimeout(() => p.redraw(), 100);
@@ -240,57 +237,55 @@ const P5BjorkSketch = createReactClass({
     };
 
 
-    p.draw = function () {
-
+    p.draw = function() {
       p.background(p.color('#001274'));
 
-      let pixWidth = Math.round(mapValue(canvasWidth, 0, 600, 0, step/2));
+      const pixWidth = Math.round(mapValue(canvasWidth, 0, 600, 0, step/2));
 
       if (hasPixelData) {
         for (let x = 0; x < picWidth; x += step) {
           for (let y = 0; y < picWidth; y += step) {
-            let pixel = pixelData[x + y * picWidth];
+            const pixel = pixelData[x + y * picWidth];
 
             p.push();
             p.translate(mapValue(x, 0, picWidth, 0, canvasWidth), mapValue(y, 0, picWidth, 0, canvasWidth));
 
             // Red
             p.fill(pixel[0], 0, 0);
-            let redRadius =  mapValue(pixel[0], 0, 255, 0, pixWidth);
+            const redRadius = mapValue(pixel[0], 0, 255, 0, pixWidth);
             p.ellipse(0, 0, redRadius, redRadius);
 
             // Blue
             p.fill(0, 0, pixel[2]);
-            let blueRadius =  mapValue(pixel[2], 0, 255, 0, pixWidth);
+            const blueRadius = mapValue(pixel[2], 0, 255, 0, pixWidth);
             p.ellipse(- step/4, step/2, blueRadius, blueRadius);
 
             // Green
             p.fill(0, pixel[1], 0);
-            let greenRadius =  mapValue(pixel[1], 0, 255, 0, pixWidth);
+            const greenRadius = mapValue(pixel[1], 0, 255, 0, pixWidth);
             p.ellipse(step/4, step/2, greenRadius, greenRadius);
             p.pop();
-
           }
         }
       }
     };
   },
 
-  sketchBjorkHomogenic (p) {
+  sketchBjorkHomogenic(p) {
     let step = 0;
-    const maxStep = 9;
+    // const maxStep = 9;
     const picWidth = 500;
     let canvasWidth = 600;
     let pixelData = [];
     let hasPixelData = false;
 
-    p.setup = function () {
+    p.setup = function() {
       p.createCanvas(canvasWidth, canvasWidth);
       p.noLoop();
       p.noStroke();
     };
 
-    p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+    p.updateWithProps = function(props) {
       if (props.width && (props.width != canvasWidth)) {
         canvasWidth = ( props.width < 600 ) ? props.width : 600;
         p.resizeCanvas(canvasWidth, canvasWidth);
@@ -303,31 +298,29 @@ const P5BjorkSketch = createReactClass({
         setTimeout(() => p.redraw(), 100);
       }
 
-      let newStep = props.value;
+      const newStep = props.value;
       if (step != newStep && hasPixelData) {
         step = newStep;
         setTimeout(() => p.redraw(), 100);
       }
     };
 
-    p.draw = function () {
+    p.draw = function() {
       p.background(p.color('#c7203a'));
-      let pixWidth = Math.round(mapValue(canvasWidth, 300, 600, 2, 5));
+      const pixWidth = Math.round(mapValue(canvasWidth, 300, 600, 2, 5));
 
       if (hasPixelData) {
-
         for (let x = 0; x < picWidth / 5; x++) {
           for (let y = 0; y < picWidth / 5; y++) {
-            let pixel = pixelData[y + x * picWidth / 5];
+            const pixel = pixelData[y + x * picWidth / 5];
 
             p.fill(p.color('#' + pixel[step]));
             p.rect(mapValue(x * 5, 0, picWidth, 0, canvasWidth), mapValue(y * 5, 0, picWidth, 0, canvasWidth), pixWidth, pixWidth);
           }
         }
-
       }
     };
-  }
+  },
 });
 
 export {P5BjorkSketch};

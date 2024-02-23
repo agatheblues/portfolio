@@ -1,8 +1,7 @@
 require('../Title/Title.scss');
 import PropTypes from 'prop-types';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 
 const Title = createReactClass({
@@ -10,15 +9,15 @@ const Title = createReactClass({
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string,
     authors: PropTypes.array.isRequired,
-    date: PropTypes.string.isRequired
+    date: PropTypes.string.isRequired,
   },
   addNewLine(s = '') {
-    let newlines = s.match(/\{\{\}\}/g);
+    const newlines = s.match(/\{\{\}\}/g);
 
     if (!newlines) {
       return <div><h1>{s}</h1></div>;
     } else {
-      let textParts = s.split(/\{\{\}\}/g);
+      const textParts = s.split(/\{\{\}\}/g);
       return (<div className='title-wrapper'>
         {
           textParts.map((textPart, index) => {
@@ -82,7 +81,7 @@ const Title = createReactClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
-export { Title };
+export {Title};

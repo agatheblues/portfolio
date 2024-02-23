@@ -1,7 +1,7 @@
 require('../Methodology/Methodology.scss');
 import PropTypes from 'prop-types';
 import React from 'react';
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 const Methodology = createReactClass({
   getInitialState: function() {
@@ -12,7 +12,7 @@ const Methodology = createReactClass({
     content: PropTypes.array.isRequired,
   },
   render() {
-    return(
+    return (
       <div className='methodology-container'>
         <h2 className='section-title'>Methodology</h2>
         {
@@ -22,7 +22,7 @@ const Methodology = createReactClass({
         }
       </div>
     );
-  }
+  },
 });
 
 export {Methodology};

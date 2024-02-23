@@ -1,15 +1,14 @@
 require('../Slider/Slider.scss');
 import PropTypes from 'prop-types';
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 
 const Slider = createReactClass({
   getInitialState: function() {
     return {
       value: this.props.defaultValue,
-      className: 'range-container'
+      className: 'range-container',
     };
   },
 
@@ -20,13 +19,13 @@ const Slider = createReactClass({
     defaultValue: PropTypes.number.isRequired,
     id: PropTypes.string,
     handleSlider: PropTypes.func.isRequired,
-    width: PropTypes.number
+    width: PropTypes.number,
   },
 
   handleSliderChange(event) {
-    let value = event.target.value;
+    const value = event.target.value;
     this.setState({
-      value: value
+      value: value,
     });
     this.props.handleSlider(parseInt(value));
   },
@@ -34,11 +33,11 @@ const Slider = createReactClass({
   componentDidMount() {
     if (this.props.width && this.props.width >= 600) {
       this.setState({
-        className: 'range-container range-container--600'
+        className: 'range-container range-container--600',
       });
     } else {
       this.setState({
-        className: 'range-container'
+        className: 'range-container',
       });
     }
   },
@@ -47,31 +46,32 @@ const Slider = createReactClass({
     if (nextProps.width && (nextProps.width != this.props.width)) {
       if (nextProps.width >= 600) {
         this.setState({
-          className: 'range-container range-container--600'
+          className: 'range-container range-container--600',
         });
       } else {
         this.setState({
-          className: 'range-container'
+          className: 'range-container',
         });
       }
     }
   },
 
   render() {
-    return(
+    return (
       <div className={this.state.className}>
-        <input type='range'
+        <input
+          type='range'
           min={this.props.min}
           max={this.props.max}
           value={this.state.value}
           step={this.props.step}
           id={this.props.id}
           className='input-range'
-          onChange={this.handleSliderChange}>
-        </input>
+          onChange={this.handleSliderChange}
+        />
       </div>
     );
-  }
+  },
 });
 
 export {Slider};

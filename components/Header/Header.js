@@ -2,15 +2,15 @@ require('../Header/Header.scss');
 import PropTypes from 'prop-types';
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 
 const Header = createReactClass({
   propTypes: {
-    menuItems: PropTypes.array.isRequired
+    menuItems: PropTypes.array.isRequired,
   },
   render() {
-    return(
+    return (
       <header className="header-container">
         <div>
           <ul className="header-list">
@@ -29,7 +29,7 @@ const Header = createReactClass({
         </div>
       </header>
     );
-  }
+  },
 });
 
 export {Header};

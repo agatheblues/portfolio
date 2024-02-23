@@ -1,48 +1,42 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: ['./main.js'],
+  mode: 'production',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    clean: true,
   },
   module: {
     rules: [
       {
-        test: [/\.js$/],
+        test: /\.(?:js|jsx|mjs|cjs)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015']
-        }
-      },
-      {
-        test: /\.js$/,
-        enforce: 'pre',
-        exclude: [/node_modules/],
-        loader: 'eslint-loader',
-        options: {
-          // eslint options (if necessary)
-        }
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', {targets: 'defaults'}],
+              ['@babel/preset-react', {targets: 'defaults'}],
+            ],
+          },
+        },
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
-      }
-    ]
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader', // Translates CSS into CommonJS.
+          'sass-loader', // Compiles SCSS to CSS.
+        ],
+      },
+    ],
   },
   plugins: [
-    new ExtractTextPlugin('style.css'),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    })
-  ]
+    new HtmlWebpackPlugin({template: 'index.html'}),
+    new MiniCssExtractPlugin({filename: 'style.css'}),
+  ],
 };

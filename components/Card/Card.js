@@ -2,7 +2,7 @@ require('../Card/Card.scss');
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Link} from 'react-router-dom';
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 const CardItem = createReactClass({
   getInitialState: function() {
@@ -13,10 +13,10 @@ const CardItem = createReactClass({
     imgUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
-    alt: PropTypes.string
+    alt: PropTypes.string,
   },
   render() {
-    return(
+    return (
       <div>
         <img className='card-thumbnail' src={this.props.imgUrl} alt={this.props.alt}/>
         <hr className='hline-seperator'></hr>
@@ -24,33 +24,35 @@ const CardItem = createReactClass({
         <p className='card-description'>{this.props.description}</p>
       </div>
     );
-  }
+  },
 });
 
 const Card = createReactClass({
   getInitialState: function() {
     return {
-      cardClicked: ''
+      cardClicked: '',
     };
   },
   propTypes: {
     cardItems: PropTypes.array.isRequired,
-    origin: PropTypes.string.isRequired
+    origin: PropTypes.string.isRequired,
   },
   makeClickHandler: function(divId) {
-    return function (e) {
+    return function(e) {
       this.setState({
-        cardClicked: divId
+        cardClicked: divId,
       });
     }.bind(this);
   },
   render() {
-    return(
+    return (
       <section className='card-container'>
         <div className='row'>
           {
             this.props.cardItems.map((item, index) => {
-              if (!item.id) {return;}
+              if (!item.id) {
+                return;
+              }
               const cardPath = this.props.origin + '/' + item.id;
 
               return <div className='col-xs-12 col-sm-6 col-md-4 col-lg-4 row-item'
@@ -70,7 +72,7 @@ const Card = createReactClass({
         </div>
       </section>
     );
-  }
+  },
 });
 
 export {Card};

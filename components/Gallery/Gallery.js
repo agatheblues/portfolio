@@ -2,11 +2,11 @@ require('../Gallery/Gallery.scss');
 import PropTypes from 'prop-types';
 import React from 'react';
 import LazyLoad from 'react-lazyload';
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 const PlaceholderComponent = createReactClass({
   render() {
-    return(
+    return (
       <div className='gallery-placeholder'>
         <img className='gallery-thumbnail' src='./static/images/placeholder.png' alt='placeholder'/>
         <div className='sk-cube-grid'>
@@ -16,21 +16,21 @@ const PlaceholderComponent = createReactClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 const Gallery = createReactClass({
   getInitialState: function() {
     return {
-      url: ''
+      url: '',
     };
   },
   propTypes: {
     imgUrls: PropTypes.array.isRequired,
     title: PropTypes.string,
-    description: PropTypes.string
+    description: PropTypes.string,
   },
-  renderTitle(){
+  renderTitle() {
     if (this.props.title) {
       return (
         <div className='gallery-title'>
@@ -42,7 +42,7 @@ const Gallery = createReactClass({
     }
   },
   render() {
-    return(
+    return (
       <section className='gallery-container'>
         <div className='gallery-wrapper'>
           {this.renderTitle()}
@@ -69,7 +69,7 @@ const Gallery = createReactClass({
         </div>
       </section>
     );
-  }
+  },
 });
 
 export {Gallery};

@@ -4,17 +4,17 @@ import {Title} from '../../Title/Title.js';
 import {Methodology} from '../../Methodology/Methodology.js';
 import {Header} from '../../Header/Header.js';
 require('../Agator9999/Agator9999.scss');
-var createReactClass = require('create-react-class');
+const createReactClass = require('create-react-class');
 
 
 const Agator9999 = createReactClass({
   propTypes: {
     projectData: PropTypes.object.isRequired,
-    menuItems: PropTypes.array.isRequired
+    menuItems: PropTypes.array.isRequired,
   },
 
+  /* eslint-disable max-len */
   render() {
-
     return (
 
       <div>
@@ -89,7 +89,8 @@ const Agator9999 = createReactClass({
         </div>
       </div>
     );
-  }
+  },
+  /* eslint-enable max-len */
 });
 
 export {Agator9999};

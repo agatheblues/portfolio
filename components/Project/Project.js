@@ -1,19 +1,19 @@
 require('../Project/Project.scss');
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Koala } from './Koala/Koala.js';
-import { DotsStraightLine } from './DotsStraightLine/DotsStraightLine.js';
-import { ImageMappingProcessing } from './ImageMappingProcessing/ImageMappingProcessing.js';
-import { Agator9999 } from './Agator9999/Agator9999.js';
-import { AcceleratingDarkAdaptation } from './AcceleratingDarkAdaptation/AcceleratingDarkAdaptation.js';
-var createReactClass = require('create-react-class');
+import {Koala} from './Koala/Koala.js';
+import {DotsStraightLine} from './DotsStraightLine/DotsStraightLine.js';
+import {ImageMappingProcessing} from './ImageMappingProcessing/ImageMappingProcessing.js';
+import {Agator9999} from './Agator9999/Agator9999.js';
+import {AcceleratingDarkAdaptation} from './AcceleratingDarkAdaptation/AcceleratingDarkAdaptation.js';
+const createReactClass = require('create-react-class');
 
 const Project = createReactClass({
   propTypes: {
     cardItem: PropTypes.object.isRequired,
-    menuItems: PropTypes.array.isRequired
+    menuItems: PropTypes.array.isRequired,
   },
-  renderProject: function () {
+  renderProject: function() {
     switch (this.props.cardItem.id) {
       case 'project-koala':
         return (<Koala projectData={this.props.cardItem} menuItems={this.props.menuItems} />);
@@ -37,7 +37,7 @@ const Project = createReactClass({
         }
       </div>
     );
-  }
+  },
 });
 
-export { Project };
+export {Project};
