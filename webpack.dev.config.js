@@ -46,7 +46,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({template: 'index.html'}),
-    // new ESLintPlugin(),
+    new ESLintPlugin(),
     new MiniCssExtractPlugin({filename: 'style.css'}),
   ],
 };
