@@ -8,7 +8,6 @@ import {P5BjorkSketch} from './P5BjorkSketch/P5BjorkSketch.js';
 require('../ImageMappingProcessing/ImageMappingProcessing.scss');
 const createReactClass = require('create-react-class');
 
-
 const ImageMappingProcessing = createReactClass({
   getInitialState: function() {
     return {
@@ -140,4 +139,4 @@ const ImageMappingProcessing = createReactClass({
   /* eslint-enable max-len */
 });
 
-export {ImageMappingProcessing};
+export default ImageMappingProcessing;

@@ -7,6 +7,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: path.resolve(__dirname, './dist'),
+    chunkFilename: '[name]-bundle.js',
     filename: 'bundle.js',
     clean: true,
   },
